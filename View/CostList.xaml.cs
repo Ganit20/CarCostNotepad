@@ -56,8 +56,10 @@ namespace CarCostNotepad
 
         private void Add(object sender, RoutedEventArgs e)
         {
-            Add addWindow = new Add();
+            Add addWindow = new Add(List);
             addWindow.ShowDialog();
+           
+           
         }
     }
 }

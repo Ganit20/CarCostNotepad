@@ -24,7 +24,7 @@
             <TextBox x:Name="Name"  x:FieldModifier="public"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
-            <TextBlock Text="Name of Cost:"/>
+            <TextBlock Text="Price"/>
             <TextBox x:Name="Price" x:FieldModifier="public"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Vertical">
@@ -37,7 +37,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="Cancel" Grid.Column="0" Margin="4" Content="Cancel" Click="Close"/>
-            <Button x:Name="AddB" Grid.Column="1" Margin="4" Content="ADD" Click="AddObject"/>
+            <Button x:Name="AddB" Grid.Column="1" Margin="4" Content="Add" Click="AddObject"/>
             
         </Grid>
     </Grid>

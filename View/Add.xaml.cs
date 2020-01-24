@@ -1,6 +1,7 @@
 ﻿using CarCostNotepad.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,8 +20,10 @@ namespace CarCostNotepad.View
     /// </summary>
     public partial class Add : Window
     {
-        public Add()
+        ObservableCollection<Cost> List;
+        public Add(ObservableCollection<Cost> list)
         {
+            List = list;
             InitializeComponent();
         }
 
@@ -31,12 +34,13 @@ namespace CarCostNotepad.View
 
         private void AddObject(object sender, RoutedEventArgs e)
         {
-            new Cost()
+           List.Add( new Cost()
             {
                 Name = Name.Text,
                 Date = Date.SelectedDate.Value,
                 Price = int.Parse(Price.Text)
-            };
+            });
+            this.Close();
         }
     }
 }
