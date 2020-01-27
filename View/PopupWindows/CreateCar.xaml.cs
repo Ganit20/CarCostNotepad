@@ -21,7 +21,7 @@ namespace CarCostNotepad.View
     /// </summary>
     public partial class CreateCar : Window
     {
-        Car result;
+        Car result = new Car();
         public Car Result
         {
             get { return result; }
@@ -35,14 +35,15 @@ namespace CarCostNotepad.View
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            result = new Car()
+            var c = new Car()
             {
                 Name = CName.Text,
                 LicenceNumber = CLP.Text,
                 BuyDate = CDate.SelectedDate.Value,
-                Costs = new CostGroups(){} 
+                Costs = new CostGroups() 
             };
-            var Choose = new ChooseWindows(result);
+            result = c;
+            var Choose = new ChooseWindows(c);
             result = Choose.Result;
             new SaveSystem().Save(result);
             this.DialogResult = true;

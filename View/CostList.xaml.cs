@@ -16,19 +16,17 @@ using System.Windows.Shapes;
 
 namespace CarCostNotepad
 {
-    /// <summary>
-    /// Interaction logic for Repair.xaml
-    /// </summary>
+
     public partial class CostList : Page
     {
-        ObservableCollection<Cost> List;
-        public CostList(ObservableCollection<Cost> list)
+        Model.CostList List;
+        public CostList(Model.CostList list)
         {
             List = list;
             InitializeComponent();
-            CostListField.ItemsSource = list;
+            CostListField.ItemsSource = list.List;
 
-            list.Add(new Cost { CategoryName = "Repair", Name = "AAAAAAAAA", Date = DateTime.Now, Price = 10000 });
+            list.List.Add(new Cost { Name = "AAAAAAAAA", Date = DateTime.Now, Price = 10000 });
         }
 
 
@@ -36,7 +34,7 @@ namespace CarCostNotepad
         {
             var selected = (Button)e.OriginalSource;
             var row = selected.DataContext;
-            List.Remove((Cost)row);
+            List.List.Remove((Cost)row);
         }
 
         private void EditField(object sender, MouseButtonEventArgs e)
@@ -57,10 +55,10 @@ namespace CarCostNotepad
 
         private void Add(object sender, RoutedEventArgs e)
         {
-            Add addWindow = new Add(List);
+            Add addWindow = new Add(List.List);
             addWindow.ShowDialog();
-           
-           
+
+
         }
     }
 }

@@ -24,11 +24,11 @@ namespace CarCostNotepad.View
         {
             CarO = car;
             InitializeComponent();
-            AA.Navigate(new CostList(car.Costs.Checked[0]));
-            BA.Navigate(new CostList(car.Costs.Checked[1]));
-            AC.Navigate(new CostList(car.Costs.Checked[2]));
-            BC.Navigate(new CostList(car.Costs.Checked[3]));
-            BB.Navigate(new Char());
+            //AA.Navigate(new CostList(car.Costs.Checked[0]));
+            //BA.Navigate(new CostList(car.Costs.Checked[1]));
+            //AC.Navigate(new CostList(car.Costs.Checked[2]));
+            //BC.Navigate(new CostList(car.Costs.Checked[3]));
+            //BB.Navigate(new Char());
         }
     }
 }

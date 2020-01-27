@@ -9,12 +9,26 @@ namespace CarCostNotepad.Model
     {
         public CostGroups()
         {
-            Unchecked.Add(new GroupCost().FixedCost);
-            Checked.Add(new GroupCost().FuelCost);
-            Unchecked.Add(new GroupCost().OtherCost);
-            Unchecked.Add(new GroupCost().RepairCost);
-        }
-        public ObservableCollection<ObservableCollection<Cost>> Unchecked = new ObservableCollection<ObservableCollection<Cost>>();
-        public ObservableCollection<ObservableCollection<Cost>> Checked = new ObservableCollection<ObservableCollection<Cost>>();
+
+            Unchecked.Add(
+                new CostList()
+            {
+                Name = "FixedCost"
+            });
+            Checked.Add(new CostList()
+            {
+                Name = "FuelCost"
+            });
+            Unchecked.Add(new CostList()
+            {
+                Name = "OtherCost"
+            });
+            Unchecked.Add(new CostList()
+            {
+                Name = "RepairCost"
+            });
+            }
+        public ObservableCollection<CostList> Unchecked = new ObservableCollection<CostList>();
+        public ObservableCollection<CostList> Checked = new ObservableCollection<CostList>();
     }
 }

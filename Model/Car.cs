@@ -5,9 +5,9 @@ namespace CarCostNotepad.ViewModel
 {
     public class Car
     {
-        public CostGroups Costs { get; set; }
+        public CostGroups Costs = new CostGroups();
         public string Name { get; set; }
-        public DateTime BuyDate { get; set; }
+        public DateTime BuyDate = new DateTime();
         public string LicenceNumber { get; set; }
     }
 }

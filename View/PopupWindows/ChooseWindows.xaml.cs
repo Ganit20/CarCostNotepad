@@ -24,11 +24,11 @@ namespace CarCostNotepad.View.PopupWindows
         {
             get { return CarL; }
         }
-        Car CarL;
+        Car CarL= new Car();
         public ChooseWindows(Car car)
         {
+            
             CarL = car;
-            Checked.ItemsSource = car.Costs.Checked;
             UnChecked.ItemsSource = car.Costs.Unchecked;
             InitializeComponent();
         }

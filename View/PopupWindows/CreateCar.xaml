@@ -25,6 +25,13 @@
         <StackPanel Margin="10" Grid.Row="2" Orientation="Vertical">
             <TextBlock Text="Day of purchase" TextWrapping="Wrap"/>
             <DatePicker x:Name="CDate" x:FieldModifier="public"/>
+            <ListView x:Name="ok" x:FieldModifier="public" Height="100">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
 
         </StackPanel>
         <Grid Margin="10" Grid.Row="3">

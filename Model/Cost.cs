@@ -9,19 +9,7 @@ namespace CarCostNotepad.Model
     {
         public event PropertyChangedEventHandler PropertyChanged;
         string name;
-        string categoryName;
-        public string CategoryName
-        {
-            get
-            {
-                return categoryName;
-            }
-            set
-            {
-                categoryName = value;
-                NotifyPropertyChanged("CategoryName");
-            }
-        }
+       
         public string Name
         {
             get
@@ -47,7 +35,7 @@ namespace CarCostNotepad.Model
                 NotifyPropertyChanged("Price");
             }
         }
-        DateTime date;
+        DateTime date = new DateTime();
         public DateTime Date
         {
             get
