@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarCostNotepad.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,9 +19,16 @@ namespace CarCostNotepad.View
     /// </summary>
     public partial class Card : Page
     {
-        public Card()
+        public Car CarO;
+        public Card(Car car)
         {
+            CarO = car;
             InitializeComponent();
+            AA.Navigate(new CostList(car.Costs.Checked[0]));
+            BA.Navigate(new CostList(car.Costs.Checked[1]));
+            AC.Navigate(new CostList(car.Costs.Checked[2]));
+            BC.Navigate(new CostList(car.Costs.Checked[3]));
+            BB.Navigate(new Char());
         }
     }
 }

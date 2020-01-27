@@ -27,7 +27,8 @@ namespace CarCostNotepad
             List = list;
             InitializeComponent();
             CostListField.ItemsSource = list;
-            GroupCost.RepairCost.Add(new Cost { CategoryName = "Repair", Name = "AAAAAAAAA", Date = DateTime.Now, Price = 10000 });
+
+            list.Add(new Cost { CategoryName = "Repair", Name = "AAAAAAAAA", Date = DateTime.Now, Price = 10000 });
         }
 
 

@@ -8,6 +8,11 @@
         Background="Black"
         Title="MainWindow" WindowState="Maximized">
     <Grid>
-       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Height="30" Orientation="Horizontal" x:Name="Cards" x:FieldModifier="public"/>
+        <Frame Grid.Row="1" x:Name="MainFrame" x:FieldModifier="public"/>
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
 ﻿using CarCostNotepad.Model;
+using CarCostNotepad.View;
 using CarCostNotepad.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -22,18 +23,41 @@ namespace CarCostNotepad
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Card> CardList = new List<Card>();
         public MainWindow()
         {
-            var a = new SaveSystem().Load();
-            if(a==null) { a = new List<Car>();
-                a.Add(new Car() { }); }
-            InitializeComponent();
-            AA.Navigate(new CostList(GroupCost.RepairCost));
-            BA.Navigate(new CostList(GroupCost.FixedCost));
-            AC.Navigate(new CostList(GroupCost.FuelCost));
-            BC.Navigate(new CostList(GroupCost.OtherCost));
-            BB.Navigate(new Char());
 
+            InitializeComponent();
+            var a = new SaveSystem().Load();
+            if (a.Count == 0)
+            {
+                var Create = new CreateCar();
+                Create.ShowDialog();
+                if (Create.DialogResult == true)
+                    a.Add(Create.Result);
+            }
+            foreach (var car in a)
+            {
+                CardList.Add(new Card(car));
+                Button Car = new Button();
+                if (car.Name.Length * 15 < 50)
+                    Car.Width = 50;
+                else
+                    Car.Width = car.Name.Length * 15;
+                Car.Content = car.Name;
+                Car.Click += GoToCard;
+                Cards.Children.Add(Car);
+
+                
+            }
+
+        }
+
+        private void GoToCard(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            var CardObject = CardList.Find(e => e.CarO.Name ==button.Content);
+            MainFrame.Navigate(CardObject);
         }
     }
 }

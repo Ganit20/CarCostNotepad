@@ -27,10 +27,11 @@ namespace CarCostNotepad.ViewModel
         public List<Car> Load()
         {
             List<Car> Cars = new List<Car>();
-            var saves = Directory.GetFiles("Saves/","%.CCNF");
+            var directory = new DirectoryInfo(@"Saves\");
+            var saves = directory.GetFiles("*.CCNF");
             foreach(var file in saves)
             {
-                using(var Reader = new StreamReader("Saves/"+file))
+                using(var Reader = new StreamReader(file.FullName))
                 {
                    
                     Cars.Add(JsonConvert.DeserializeObject<Car>(Reader.ReadToEnd()));
