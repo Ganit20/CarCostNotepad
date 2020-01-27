@@ -13,9 +13,9 @@
             <DockPanel  DockPanel.Dock="Top">
                 <TextBlock DockPanel.Dock="Left" Text="ok" Foreground="White"></TextBlock>
                 <Button DockPanel.Dock="Right" FontFamily="Segoe MDL2 Assets" Click="Add" HorizontalAlignment="Right" Margin="2">&#xE710;</Button>
-            </DockPanel> 
-            
-            <ListView x:Name="CostListField" DockPanel.Dock="Bottom" Background="Gray">
+            </DockPanel>
+
+            <ListView x:Name="CostListField" DockPanel.Dock="Top" Background="Gray">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name">

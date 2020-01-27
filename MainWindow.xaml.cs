@@ -1,4 +1,5 @@
 ﻿using CarCostNotepad.Model;
+using CarCostNotepad.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +24,15 @@ namespace CarCostNotepad
     {
         public MainWindow()
         {
+            var a = new SaveSystem().Load();
+            if(a==null) { a = new List<Car>();
+                a.Add(new Car() { }); }
             InitializeComponent();
             AA.Navigate(new CostList(GroupCost.RepairCost));
             BA.Navigate(new CostList(GroupCost.FixedCost));
             AC.Navigate(new CostList(GroupCost.FuelCost));
             BC.Navigate(new CostList(GroupCost.OtherCost));
+            BB.Navigate(new Char());
 
         }
     }
