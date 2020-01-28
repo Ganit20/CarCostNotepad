@@ -16,6 +16,7 @@ namespace CarCostNotepad.Model
                 Price = 42
             }) ;
         }
+        public int ChoosedField { get; set; }
         public string Name { get; set; }
         public ObservableCollection<Cost> List = new ObservableCollection<Cost>();
     }

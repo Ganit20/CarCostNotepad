@@ -7,6 +7,8 @@ namespace CarCostNotepad.Model
 {
     public class CostGroups
     {
+        public ObservableCollection<CostList> Unchecked = new ObservableCollection<CostList>();
+        public ObservableCollection<CostList> Checked = new ObservableCollection<CostList>();
         public CostGroups()
         {
 
@@ -28,7 +30,6 @@ namespace CarCostNotepad.Model
                 Name = "RepairCost"
             });
             }
-        public ObservableCollection<CostList> Unchecked = new ObservableCollection<CostList>();
-        public ObservableCollection<CostList> Checked = new ObservableCollection<CostList>();
+        
     }
 }

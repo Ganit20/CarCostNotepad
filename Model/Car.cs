@@ -9,5 +9,6 @@ namespace CarCostNotepad.ViewModel
         public string Name { get; set; }
         public DateTime BuyDate = new DateTime();
         public string LicenceNumber { get; set; }
+        
     }
 }

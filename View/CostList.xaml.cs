@@ -20,12 +20,14 @@ namespace CarCostNotepad
     public partial class CostList : Page
     {
         Model.CostList List;
-        public CostList(Model.CostList list)
+        private Card ParentPage;
+        public CostList(Model.CostList list, Card parentPage)
         {
+            ParentPage = parentPage;
             List = list;
             InitializeComponent();
             CostListField.ItemsSource = list.List;
-
+            Title.DataContext = list;
             list.List.Add(new Cost { Name = "AAAAAAAAA", Date = DateTime.Now, Price = 10000 });
         }
 
@@ -60,5 +62,7 @@ namespace CarCostNotepad
 
 
         }
+
+
     }
 }

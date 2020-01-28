@@ -44,6 +44,7 @@ namespace CarCostNotepad.View
             };
             result = c;
             var Choose = new ChooseWindows(c);
+            Choose.ShowDialog();
             result = Choose.Result;
             new SaveSystem().Save(result);
             this.DialogResult = true;

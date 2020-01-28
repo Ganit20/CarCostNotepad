@@ -28,23 +28,31 @@ namespace CarCostNotepad.View.PopupWindows
         public ChooseWindows(Car car)
         {
             
+
             CarL = car;
-            UnChecked.ItemsSource = car.Costs.Unchecked;
             InitializeComponent();
+            UnChecked.ItemsSource = CarL.Costs.Unchecked;
+            Checked.ItemsSource = CarL.Costs.Checked;
         }
 
         private void ToChecked_Click(object sender, RoutedEventArgs e)
         {
-            var a =CarL.Costs.Unchecked.Where(e => e == UnChecked.SelectedItem);
-            CarL.Costs.Checked.Add(a.First());
-            CarL.Costs.Unchecked.Remove(a.First());
+            if (UnChecked.SelectedItem != null)
+            {
+                var a = CarL.Costs.Unchecked.Where(e => e == UnChecked.SelectedItem);
+                CarL.Costs.Checked.Add(a.First());
+                CarL.Costs.Unchecked.Remove(a.First());
+            }
         }
 
         private void ToUnChecked_Click(object sender, RoutedEventArgs e)
         {
-            var a = CarL.Costs.Checked.Where(e => e == UnChecked.SelectedItem);
+            if (Checked.SelectedItem != null)
+            {
+                var a = CarL.Costs.Checked.Where(e => e == Checked.SelectedItem);
             CarL.Costs.Unchecked.Add(a.First());
             CarL.Costs.Checked.Remove(a.First());
+            }
         }
 
         private void UnChecked_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -72,7 +80,31 @@ namespace CarCostNotepad.View.PopupWindows
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
+            foreach(var Checked in CarL.Costs.Checked)
+            {
+                Checked.ChoosedField = CarL.Costs.Checked.IndexOf(Checked) + 1;
+            }
             this.Close();
+        }
+
+        private void Checked_Double(object sender, MouseButtonEventArgs e)
+        {
+            if (Checked.SelectedItem != null)
+            {
+                var a = CarL.Costs.Checked.Where(e => e == Checked.SelectedItem);
+            CarL.Costs.Unchecked.Add(a.First());
+            CarL.Costs.Checked.Remove(a.First());
+            }
+        }
+
+        private void unChecked_Double(object sender, MouseButtonEventArgs e)
+        {
+            if (UnChecked.SelectedItem != null)
+            {
+                var a = CarL.Costs.Unchecked.Where(e => e == UnChecked.SelectedItem);
+            CarL.Costs.Checked.Add(a.First());
+            CarL.Costs.Unchecked.Remove(a.First());
+            }
         }
     }
 }

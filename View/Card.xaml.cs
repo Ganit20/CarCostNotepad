@@ -14,21 +14,70 @@ using System.Windows.Shapes;
 
 namespace CarCostNotepad.View
 {
-    /// <summary>
-    /// Interaction logic for Card.xaml
-    /// </summary>
+   
+     
     public partial class Card : Page
     {
         public Car CarO;
+        public List<Frame> FieldList = new List<Frame>();
         public Card(Car car)
         {
             CarO = car;
             InitializeComponent();
-            //AA.Navigate(new CostList(car.Costs.Checked[0]));
-            //BA.Navigate(new CostList(car.Costs.Checked[1]));
-            //AC.Navigate(new CostList(car.Costs.Checked[2]));
-            //BC.Navigate(new CostList(car.Costs.Checked[3]));
-            //BB.Navigate(new Char());
+            FieldList.Add(AA);
+            FieldList.Add(BA);
+            FieldList.Add(CA);
+            FieldList.Add(AC);
+            FieldList.Add(BC);
+            FieldList.Add(CC);
+            SetFrames();
+
+        }
+        void SetFrames()
+        {
+            foreach (var Checked in CarO.Costs.Checked)
+            {
+                if (Checked.ChoosedField != 0)
+                {
+                    switch (Checked.ChoosedField)
+                    {
+                        case 1:
+                            AA.Navigate(new CostList(Checked,this));
+                            break;
+                        case 2:
+                            BA.Navigate(new CostList(Checked, this));
+                            break;
+                        case 3:
+                            CA.Navigate(new CostList(Checked, this));
+                            break;
+                        case 4:
+                            AC.Navigate(new CostList(Checked, this));
+                            break;
+                        case 5:
+                            BC.Navigate(new CostList(Checked, this));
+                            break;
+                        case 6:
+                            CC.Navigate(new CostList(Checked, this));
+                            break;
+
+                    }
+                }
+            }
+        }
+
+        private void MoveState(object sender, RoutedEventArgs e)
+        {
+            foreach (var field in FieldList)
+            {
+                field.Background = new SolidColorBrush(Colors.Blue);
+                field.MouseDown += new MouseButtonEventHandler(Move);
+            }
+        }
+
+        void Move(object sender, MouseEventArgs e)
+        {
+            var frame = (Frame) sender;
+            frame.Background = new SolidColorBrush(Colors.Red);
         }
     }
 }

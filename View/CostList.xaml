@@ -10,9 +10,10 @@
 
     <Grid>
         <DockPanel Margin="5" >
-            <DockPanel  DockPanel.Dock="Top">
-                <TextBlock DockPanel.Dock="Left" Text="ok" Foreground="White"></TextBlock>
+            <DockPanel  DockPanel.Dock="Top" >
+                <TextBlock x:Name="Title" x:FieldModifier="public" DockPanel.Dock="Left" Text="{Binding Name}" Foreground="White"></TextBlock>
                 <Button DockPanel.Dock="Right" FontFamily="Segoe MDL2 Assets" Click="Add" HorizontalAlignment="Right" Margin="2">&#xE710;</Button>
+                <Button DockPanel.Dock="Right" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Right" Margin="2">&#xE8AB;</Button>
             </DockPanel>
 
             <ListView x:Name="CostListField" DockPanel.Dock="Top" Background="Gray">
