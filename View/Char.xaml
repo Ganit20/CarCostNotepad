@@ -9,6 +9,45 @@
       Title="Char">
 
     <Grid>
+        <Ellipse Fill="White" x:Name="Chart" Width="200" Height="200">
+
+        </Ellipse>
         
+        <Ellipse Width="200" Height="200">
+            <Ellipse.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="229.399" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FFFFF300" Offset="0"/>
+                    <GradientStop Color="Transparent" Offset="0.523"/>
+                    <GradientStop Color="#F1FEF30D" Offset="0.503"/>
+                    <GradientStop Color="Black" Offset="0.503"/>
+                </LinearGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Ellipse Width="200" Height="200">
+            <Ellipse.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="135" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="Red" Offset="0"/>
+                    <GradientStop Color="Transparent" Offset="0.523"/>
+                    <GradientStop Color="Black" Offset="0.513"/>
+                    <GradientStop Color="Red" Offset="0.503"/>
+                </LinearGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
     </Grid>
 </Page>

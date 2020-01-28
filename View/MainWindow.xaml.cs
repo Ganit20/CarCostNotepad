@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CarCostNotepad.View.PopupWindows;
 
 namespace CarCostNotepad
 {
@@ -49,9 +50,11 @@ namespace CarCostNotepad
                 Car.Content = car.Name;
                 Car.Click += GoToCard;
                 Cards.Children.Add(Car);
-
                 
+
             }
+            Cards.Children[0].RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+           
 
         }
 
@@ -64,7 +67,44 @@ namespace CarCostNotepad
             var button = (Button)sender;
             button.Background = Brushes.Blue;
             var CardObject = CardList.Find(e => e.CarO.Name ==button.Content);
-            MainFrame.Navigate(CardObject);
+            MainFrame.Navigate(new Card(CardObject.CarO));
+        }
+
+        private void MoveState(object sender, RoutedEventArgs e)
+        {
+            var card = (Card)MainFrame.Content;
+            card.MoveState();
+        }
+
+        private void Choose(object sender, RoutedEventArgs e)
+        {
+            var card = (Card) MainFrame.Content;
+            var choose = new ChooseWindows(card.CarO);
+            choose.ShowDialog();
+            MainFrame.Navigate(new Card(choose.Result));
+            var CardObject = CardList.IndexOf(CardList.Find(e => e.CarO.Name == choose.Result.Name));
+            CardList[CardObject].CarO = choose.Result;
+            new SaveSystem().Save(choose.Result);
+        }
+
+        private void AddC(object sender, RoutedEventArgs e)
+        {
+            var create = new CreateCar();
+            create.ShowDialog();
+            if (create.DialogResult == true)
+            {
+                CardList.Add(new Card(create.Result));
+                Button Car = new Button();
+                Car.Background = this.Background;
+                Car.Foreground = this.Foreground;
+                if (create.Result.Name.Length * 15 < 50)
+                    Car.Width = 50;
+                else
+                    Car.Width = create.Result.Name.Length * 15;
+                Car.Content = create.Result.Name;
+                Car.Click += GoToCard;
+                Cards.Children.Add(Car);
+            }
         }
     }
 }

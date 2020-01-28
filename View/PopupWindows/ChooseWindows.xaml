@@ -16,6 +16,7 @@
             <RowDefinition Height="10*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Button x:Name="Add" Grid.Column="1" Click="AddField" VerticalAlignment="Top" Content="Add"/>
         <ListView Margin="10"  x:Name="UnChecked" Grid.Column="0" x:FieldModifier="public" MouseDoubleClick="unChecked_Double" SelectionChanged="UnChecked_SelectionChanged">
             <ListView.View>
                 <GridView>

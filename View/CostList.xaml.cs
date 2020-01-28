@@ -44,6 +44,7 @@ namespace CarCostNotepad
             List.List.Remove((Cost)row);
             List.Sum = 0;
             new SaveSystem().Save(car);
+            car.RefreshSum();
         }
 
         private void EditField(object sender, MouseButtonEventArgs e)
@@ -68,6 +69,7 @@ namespace CarCostNotepad
             addWindow.ShowDialog();
             List.Sum = 0;
             new SaveSystem().Save(car);
+            car.RefreshSum();
 
         }
 

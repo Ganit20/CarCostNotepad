@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CarCostNotepad.View"
+      xmlns:lvc="clr-namespace:LiveCharts;assembly=LiveCharts"
       mc:Ignorable="d" Background="#111111" Foreground="White"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Card">
@@ -23,7 +24,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
-        <Button FontFamily="Segoe MDL2 Assets" Content="&#xE8AB;" Foreground="White" Background="#111111" BorderBrush="White" Click="MoveState"/>
+
 
         <Frame Margin="10"  x:Name="AA" Grid.Column="1" Grid.Row="1"  x:FieldModifier="public"  RenderTransformOrigin="0.5,0.5"  />
 
@@ -39,23 +40,23 @@
         <Frame Margin="10" x:Name="BA" Grid.Column="1" Grid.Row="2" x:FieldModifier="public"/>
 
 
+       
+<!--<Frame Margin="10" x:Name="BB" Grid.Column="2" Grid.Row="2" x:FieldModifier="public"/>-->
 
-        <Frame Margin="10" x:Name="BB" Grid.Column="2" Grid.Row="2" x:FieldModifier="public"/>
 
 
-
-            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="2" x:FieldModifier="public" x:Name="Sums">
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="2" x:FieldModifier="public" x:Name="Sums">
             <StackPanel Orientation="Horizontal">
-                <TextBlock>All: </TextBlock>
-                <TextBlock x:Name="SAll" Text="{Binding All}"/>
+                <TextBlock FontSize="30">All:</TextBlock>
+                <TextBlock  FontSize="30" x:Name="SAll" Text="{Binding Sum}"/>
             </StackPanel>
 
-            </StackPanel>
+        </StackPanel>
 
 
 
 
-                <Frame Margin="10" x:Name="CA" Grid.Column="1" Grid.Row="3" x:FieldModifier="public"/>
+        <Frame Margin="10" x:Name="CA" Grid.Column="1" Grid.Row="3" x:FieldModifier="public"/>
 
 
 

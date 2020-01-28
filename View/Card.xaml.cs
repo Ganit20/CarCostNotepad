@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CarCostNotepad.Model;
+using CarCostNotepad.View.PopupWindows;
 
 namespace CarCostNotepad.View
 {
@@ -36,6 +37,8 @@ namespace CarCostNotepad.View
             FieldList.Add(BC);
             FieldList.Add(CC);
             SetFrames();
+            CarO.RefreshSum();
+            SAll.DataContext = CarO;
 
         }
         void SetFrames()
@@ -70,7 +73,8 @@ namespace CarCostNotepad.View
             }
         }
 
-        private void MoveState(object sender, RoutedEventArgs e)
+       
+        public  void MoveState()
         {
             if (!isMoveState)
             {
