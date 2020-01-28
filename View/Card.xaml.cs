@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CarCostNotepad.Model;
 
 namespace CarCostNotepad.View
 {
@@ -18,10 +19,14 @@ namespace CarCostNotepad.View
      
     public partial class Card : Page
     {
+        private Frame selectedFrame ;
+        private object tempFrame;
         public Car CarO;
+        private bool isMoveState = false;
         public List<Frame> FieldList = new List<Frame>();
         public Card(Car car)
         {
+            
             CarO = car;
             InitializeComponent();
             FieldList.Add(AA);
@@ -42,22 +47,22 @@ namespace CarCostNotepad.View
                     switch (Checked.ChoosedField)
                     {
                         case 1:
-                            AA.Navigate(new CostList(Checked,this));
+                            AA.Navigate(new CostList(CarO,Checked,this));
                             break;
                         case 2:
-                            BA.Navigate(new CostList(Checked, this));
+                            BA.Navigate(new CostList(CarO, Checked, this));
                             break;
                         case 3:
-                            CA.Navigate(new CostList(Checked, this));
+                            CA.Navigate(new CostList(CarO, Checked, this));
                             break;
                         case 4:
-                            AC.Navigate(new CostList(Checked, this));
+                            AC.Navigate(new CostList(CarO, Checked, this));
                             break;
                         case 5:
-                            BC.Navigate(new CostList(Checked, this));
+                            BC.Navigate(new CostList(CarO, Checked, this));
                             break;
                         case 6:
-                            CC.Navigate(new CostList(Checked, this));
+                            CC.Navigate(new CostList(CarO, Checked, this));
                             break;
 
                     }
@@ -67,17 +72,51 @@ namespace CarCostNotepad.View
 
         private void MoveState(object sender, RoutedEventArgs e)
         {
-            foreach (var field in FieldList)
+            if (!isMoveState)
             {
-                field.Background = new SolidColorBrush(Colors.Blue);
-                field.MouseDown += new MouseButtonEventHandler(Move);
+                isMoveState = true;
+                foreach (var field in FieldList)
+                {
+
+                    field.Background = new SolidColorBrush(Colors.Blue);
+                    field.MouseDown += new MouseButtonEventHandler(Move);
+
+                }
+            }else if (isMoveState)
+            {
+                isMoveState = false;
+                ExitMoveState();
             }
         }
 
         void Move(object sender, MouseEventArgs e)
         {
             var frame = (Frame) sender;
-            frame.Background = new SolidColorBrush(Colors.Red);
+            if (selectedFrame == null)
+            {
+                selectedFrame = frame;
+                frame.Background = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                tempFrame = frame.Content;
+                frame.Navigate(selectedFrame.Content);
+                selectedFrame.Navigate(tempFrame);
+                tempFrame = null;
+                selectedFrame = null;
+                ExitMoveState();
+            }
+        }
+
+        private void ExitMoveState()
+        {
+            foreach (var field in FieldList)
+            {
+
+                field.Background = null;
+                field.MouseDown -= new MouseButtonEventHandler(Move);
+                new SaveSystem().Save(CarO);
+            }
         }
     }
 }

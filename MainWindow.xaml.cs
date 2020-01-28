@@ -40,6 +40,8 @@ namespace CarCostNotepad
             {
                 CardList.Add(new Card(car));
                 Button Car = new Button();
+                Car.Background = this.Background;
+                Car.Foreground = this.Foreground;
                 if (car.Name.Length * 15 < 50)
                     Car.Width = 50;
                 else
@@ -55,7 +57,12 @@ namespace CarCostNotepad
 
         private void GoToCard(object sender, RoutedEventArgs e)
         {
+            foreach (Button card in Cards.Children)
+            {
+                card.Background = this.Background;
+            }
             var button = (Button)sender;
+            button.Background = Brushes.Blue;
             var CardObject = CardList.Find(e => e.CarO.Name ==button.Content);
             MainFrame.Navigate(CardObject);
         }

@@ -5,14 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarCostNotepad"
         mc:Ignorable="d"
-        Background="Black"
+        Background="#111111" Foreground="White"
         Title="MainWindow" WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
-        <StackPanel Height="30" Orientation="Horizontal" x:Name="Cards" x:FieldModifier="public"/>
-        <Frame Grid.Row="1" x:Name="MainFrame" x:FieldModifier="public"/>
+        <StackPanel Height="30" VerticalAlignment="Bottom"  Orientation="Horizontal" x:Name="Cards" x:FieldModifier="public" >
+        </StackPanel>
+        <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Fill="Blue" Height="4"/>
+        <Line Fill="#7F274AA8"></Line>
+        <Frame NavigationUIVisibility="Hidden" Grid.Row="1" Margin="2" x:Name="MainFrame" x:FieldModifier="public"/>
     </Grid>
 </Window>

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CarCostNotepad.ViewModel;
 
 namespace CarCostNotepad
 {
@@ -20,15 +21,19 @@ namespace CarCostNotepad
     public partial class CostList : Page
     {
         Model.CostList List;
+        private Car car;
         private Card ParentPage;
-        public CostList(Model.CostList list, Card parentPage)
+        public CostList(Car _car, Model.CostList list, Card parentPage)
         {
+            car = _car;
+            List = list;
+            List.Sum = 0;
             ParentPage = parentPage;
             List = list;
             InitializeComponent();
             CostListField.ItemsSource = list.List;
             Title.DataContext = list;
-            list.List.Add(new Cost { Name = "AAAAAAAAA", Date = DateTime.Now, Price = 10000 });
+            Sum.DataContext = list;
         }
 
 
@@ -37,6 +42,8 @@ namespace CarCostNotepad
             var selected = (Button)e.OriginalSource;
             var row = selected.DataContext;
             List.List.Remove((Cost)row);
+            List.Sum = 0;
+            new SaveSystem().Save(car);
         }
 
         private void EditField(object sender, MouseButtonEventArgs e)
@@ -59,7 +66,8 @@ namespace CarCostNotepad
         {
             Add addWindow = new Add(List.List);
             addWindow.ShowDialog();
-
+            List.Sum = 0;
+            new SaveSystem().Save(car);
 
         }
 

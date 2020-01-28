@@ -4,8 +4,8 @@ using System.Text;
 
 namespace CarCostNotepad.Model
 {
-    class Sum
+    class CostSums
     {
-        
+        public double All { get; set; }
     }
 }
