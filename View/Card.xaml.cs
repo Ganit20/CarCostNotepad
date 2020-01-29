@@ -13,6 +13,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CarCostNotepad.Model;
 using CarCostNotepad.View.PopupWindows;
+using LiveCharts.Definitions.Series;
+using LiveCharts.Wpf;
+using LiveCharts;
 
 namespace CarCostNotepad.View
 {
@@ -39,42 +42,21 @@ namespace CarCostNotepad.View
             FieldList.Add(AC);
             FieldList.Add(BC);
             FieldList.Add(CC);
-            SetFrames();
+            new SetListPosition().SetFrames(CarO,Config,this);
             CarO.RefreshSum();
             SAll.DataContext = CarO;
-
+            Chart.DataContext = config;
+            UpdateChar();
         }
-        void SetFrames()
+        public void UpdateChar()
         {
-            foreach (var Checked in CarO.Costs.Checked)
+            Chart.Series.Clear();
+            foreach (var a in CarO.Costs.Checked)
             {
-                if (Checked.ChoosedField != 0)
-                {
-                    switch (Checked.ChoosedField)
-                    {
-                        case 1:
-                            AA.Navigate(new CostList(CarO,Checked,this, Config));
-                            break;
-                        case 2:
-                            BA.Navigate(new CostList(CarO, Checked, this, Config));
-                            break;
-                        case 3:
-                            CA.Navigate(new CostList(CarO, Checked, this, Config));
-                            break;
-                        case 4:
-                            AC.Navigate(new CostList(CarO, Checked, this, Config));
-                            break;
-                        case 5:
-                            BC.Navigate(new CostList(CarO, Checked, this, Config));
-                            break;
-                        case 6:
-                            CC.Navigate(new CostList(CarO, Checked, this, Config));
-                            break;
-
-                    }
-                }
+                Chart.Series.Add(new PieSeries() { Values = new ChartValues<double>() { a.Sum }, Title = a.Name });
             }
         }
+        
        
        
         public  void MoveState()
@@ -135,6 +117,11 @@ namespace CarCostNotepad.View
                 field.MouseDown -= new MouseButtonEventHandler(Move);
                 new SaveSystem().Save(CarO);
             }
+        }
+
+        private void Chart_OnDataClick(object sender, LiveCharts.ChartPoint chartPoint)
+        {
+
         }
     }
 }

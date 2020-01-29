@@ -41,5 +41,7 @@ namespace CarCostNotepad.View.SettingsWindows
                 new SaveSystem().SaveSettings(Config);
             }
         }
+
+      
     }
 }

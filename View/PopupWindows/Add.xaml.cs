@@ -42,7 +42,7 @@ namespace CarCostNotepad.View
 
         private void AddObject(object sender, RoutedEventArgs e)
         {
-            if(Name.Text!="" && Date.SelectedDate.Value!=null && Price.Text != "")
+            if(Name.Text!="" && Date.SelectedDate!=null && Price.Text != "")
            List.Add( new Cost()
             {
                 Name = Name.Text,

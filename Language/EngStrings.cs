@@ -25,6 +25,14 @@ namespace CarCostNotepad.Eng
         public string OtherCostString { get; set; }
         public string FixedCostString { get; set; }
         public string RepairsCostString { get; set; }
+        public string ShowChartSetting { get; set ; }
+        public string CharLegendVisibility { get ; set; }
+        public string TopString { get ; set ; }
+        public string BottomString { get; set ; }
+        public string LeftString { get; set ; }
+        public string RightString { get; set  ; }
+        public string ChartSettings { get ; set; }
+        public string NoneString { get ; set; }
 
         public EngStrings()
         {
@@ -46,6 +54,14 @@ namespace CarCostNotepad.Eng
             OtherCostString = "Other";
             FixedCostString = "Fixed Costs";
             RepairsCostString = "Repair";
+            ShowChartSetting = "Show Chart";
+            CharLegendVisibility = "Chow Chart Legend";
+            TopString = "Top";
+            BottomString = "Bottom";
+            LeftString = "Left";
+            RightString = "Right";
+            ChartSettings = "Chart Settings";
+            NoneString = "None";
         }
     }
 }

@@ -3,14 +3,37 @@ using CarCostNotepad.Language;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Text;
+using System.Windows;
 
 namespace CarCostNotepad.Model
 {
-    public class Settings
+    public class Settings :INotifyPropertyChanged
     {
-        public ILanguage LanguageSet { get; set; }
+        public ILanguage languageSet { get; set; }
+        public ILanguage LanguageSet 
+        { 
+            get 
+            { 
+                return languageSet; 
+            } set 
+            { 
+                languageSet = value; 
+                NotifyPropertyChanged("LanguageSet"); 
+            } 
+        }
+
         public List<ILanguage> LanguageList = new List<ILanguage>();
+
+        public string CharLegendVisibility { 
+            get { return charLegendVisibility; } 
+            set { charLegendVisibility = value; NotifyPropertyChanged("CharLegendVisibility"); } }
+        public string charLegendVisibility;
+
+
+        Visibility showChart;
+        public Visibility ShowChart { get { return showChart; } set {  showChart = value; NotifyPropertyChanged("ShowChart"); } }
         public ObservableCollection<CostList> GetDefaultCostFields
         {
             get
@@ -43,9 +66,15 @@ namespace CarCostNotepad.Model
         }
         public void LoadDefault()
         {
+            ShowChart = Visibility.Visible;
             LanguageList.Add(new PLStrings());
             LanguageList.Add(new EngStrings());
             LanguageSet = new EngStrings();
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(string v)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
         }
     }
 }

@@ -24,11 +24,17 @@ namespace CarCostNotepad.View.SettingsWindows
             Config=config;
             DataContext = Config.LanguageSet;
             InitializeComponent();
+            OptionsFrame.Navigate(new GeneralSettings(Config));
         }
 
         private void GeneralCategory(object sender, RoutedEventArgs e)
         {
             OptionsFrame.Navigate(new GeneralSettings(Config));
+        }
+
+        private void ChartCategory(object sender, RoutedEventArgs e)
+        {
+            OptionsFrame.Navigate(new ChartSettings(Config));
         }
     }
 }

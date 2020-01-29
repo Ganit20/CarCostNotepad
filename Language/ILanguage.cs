@@ -24,5 +24,13 @@ namespace CarCostNotepad.Language
         string OtherCostString { get; set; }
         string FixedCostString { get; set; }
         string RepairsCostString { get; set; }
+        string ShowChartSetting { get; set; }
+        string CharLegendVisibility { get; set; }
+        string ChartSettings { get; set; }
+        string TopString { get; set; }
+        string BottomString { get; set; }
+        string LeftString { get; set; }
+        string RightString { get; set; }
+        string NoneString { get; set; }
     }
 }

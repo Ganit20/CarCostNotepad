@@ -49,6 +49,7 @@ namespace CarCostNotepad
             List.Sum = 0;
             new SaveSystem().Save(car);
             car.RefreshSum();
+            ParentPage.UpdateChar();
         }
 
         private void EditField(object sender, MouseButtonEventArgs e)
@@ -57,6 +58,7 @@ namespace CarCostNotepad
             box.IsReadOnly = false;
             box.Background = new SolidColorBrush(Colors.White);
             box.Foreground = new SolidColorBrush(Colors.Black);
+            ParentPage.UpdateChar();
         }
 
         private void Block(object sender, RoutedEventArgs e)
@@ -74,7 +76,7 @@ namespace CarCostNotepad
             List.Sum = 0;
             new SaveSystem().Save(car);
             car.RefreshSum();
-
+            ParentPage.UpdateChar();
         }
 
 
