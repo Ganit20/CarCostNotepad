@@ -20,11 +20,15 @@ namespace CarCostNotepad
 
     public partial class CostList : Page
     {
-        Model.CostList List;
+        public Model.CostList List;
         private Car car;
         private Card ParentPage;
-        public CostList(Car _car, Model.CostList list, Card parentPage)
+        Settings Config;
+        public CostList(Car _car, Model.CostList list, Card parentPage, Settings config)
         {
+            
+            Config = config;
+            DataContext = Config.LanguageSet;
             car = _car;
             List = list;
             List.Sum = 0;
@@ -65,7 +69,7 @@ namespace CarCostNotepad
 
         private void Add(object sender, RoutedEventArgs e)
         {
-            Add addWindow = new Add(List.List);
+            Add addWindow = new Add(List.List,Config);
             addWindow.ShowDialog();
             List.Sum = 0;
             new SaveSystem().Save(car);

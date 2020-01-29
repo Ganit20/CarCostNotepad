@@ -25,9 +25,12 @@ namespace CarCostNotepad.View
         public Car CarO;
         private bool isMoveState = false;
         public List<Frame> FieldList = new List<Frame>();
-        public Card(Car car)
+        Settings Config;
+
+        public Card(Car car,Settings config)
         {
-            
+            Config = config;
+            DataContext = Config.LanguageSet;
             CarO = car;
             InitializeComponent();
             FieldList.Add(AA);
@@ -50,29 +53,29 @@ namespace CarCostNotepad.View
                     switch (Checked.ChoosedField)
                     {
                         case 1:
-                            AA.Navigate(new CostList(CarO,Checked,this));
+                            AA.Navigate(new CostList(CarO,Checked,this, Config));
                             break;
                         case 2:
-                            BA.Navigate(new CostList(CarO, Checked, this));
+                            BA.Navigate(new CostList(CarO, Checked, this, Config));
                             break;
                         case 3:
-                            CA.Navigate(new CostList(CarO, Checked, this));
+                            CA.Navigate(new CostList(CarO, Checked, this, Config));
                             break;
                         case 4:
-                            AC.Navigate(new CostList(CarO, Checked, this));
+                            AC.Navigate(new CostList(CarO, Checked, this, Config));
                             break;
                         case 5:
-                            BC.Navigate(new CostList(CarO, Checked, this));
+                            BC.Navigate(new CostList(CarO, Checked, this, Config));
                             break;
                         case 6:
-                            CC.Navigate(new CostList(CarO, Checked, this));
+                            CC.Navigate(new CostList(CarO, Checked, this, Config));
                             break;
 
                     }
                 }
             }
         }
-
+       
        
         public  void MoveState()
         {
@@ -104,13 +107,24 @@ namespace CarCostNotepad.View
             else
             {
                 tempFrame = frame.Content;
+                
+                var content = (CostList)selectedFrame.Content;
+                content.List.ChoosedField = FieldList.IndexOf(frame)+1;
                 frame.Navigate(selectedFrame.Content);
+                if (tempFrame != null)
+                {
+                    var content1 = (CostList)tempFrame;
+                    content1.List.ChoosedField = FieldList.IndexOf(selectedFrame) + 1;
+                }
+                
                 selectedFrame.Navigate(tempFrame);
                 tempFrame = null;
                 selectedFrame = null;
                 ExitMoveState();
             }
         }
+
+      
 
         private void ExitMoveState()
         {

@@ -39,5 +39,31 @@ namespace CarCostNotepad.ViewModel
             }
             return Cars;
         }
+      public void SaveSettings(Settings set)
+        {
+            using (var writer = new StreamWriter("Saves/Settings.conf"))
+            {
+                var a = JsonConvert.SerializeObject(set, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+                writer.Write(a);
+            };
+        }
+        public Settings LoadSettings()
+        {
+            Settings set = new Settings();
+
+            if (File.Exists("Saves/Settings.conf"))
+            {
+                using (var Reader = new StreamReader("Saves/Settings.conf"))
+                {
+                    set = JsonConvert.DeserializeObject<Settings>(Reader.ReadToEnd(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+                }
+                return set;
+            }else
+            {
+                set.LoadDefault();
+                SaveSettings(set);
+                return set;
+            }
+        }
     }
 }

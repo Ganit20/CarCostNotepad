@@ -1,4 +1,5 @@
-﻿using CarCostNotepad.ViewModel;
+﻿using CarCostNotepad.Model;
+using CarCostNotepad.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,10 +26,11 @@ namespace CarCostNotepad.View.PopupWindows
             get { return CarL; }
         }
         Car CarL= new Car();
-        public ChooseWindows(Car car)
+        Settings Config;
+        public ChooseWindows(Car car, Settings config)
         {
-            
-
+            Config = config;
+            DataContext = Config.LanguageSet;
             CarL = car;
             InitializeComponent();
             UnChecked.ItemsSource = CarL.Costs.Unchecked;
@@ -109,7 +111,7 @@ namespace CarCostNotepad.View.PopupWindows
 
         private void AddField(object sender, RoutedEventArgs e)
         {
-            var a = new AddField();
+            var a = new AddField(Config);
             a.ShowDialog();
             if (a.DialogResult.Value)
             {

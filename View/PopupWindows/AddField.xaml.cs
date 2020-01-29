@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarCostNotepad.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -27,9 +28,10 @@ namespace CarCostNotepad.View.PopupWindows
                 name = value;
             }
         }
-        public AddField()
+        public AddField(Settings config)
         {
             InitializeComponent();
+            DataContext = config.LanguageSet;
         }
 
         private void Add(object sender, RoutedEventArgs e)

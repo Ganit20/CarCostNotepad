@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarCostNotepad.View.PopupWindows"
         mc:Ignorable="d" Background="DimGray" Foreground="White"
-        Title="AddField" Height="100" Width="200">
+        Title="AddField" Height="150" Width="200">
     <Grid>
         <StackPanel>
             <TextBlock>Name</TextBlock>
             <TextBox x:Name="Name"> </TextBox>
 
-            <Button Margin="2"  Click="Add">Add</Button>
-            <Button Margin="1" Click="Cancel">Cancel</Button>
+            <Button Margin="2"  Click="Add" Content="{Binding AddString}"/>
+            <Button Margin="1" Click="Cancel" Content="{Binding CancelString}"/>
 
         </StackPanel>
         

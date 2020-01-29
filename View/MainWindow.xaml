@@ -18,6 +18,7 @@
             <Button Margin="5"  FontFamily="Segoe MDL2 Assets" FontSize="15" Content="&#xE710;" Foreground="White" Background="#111111" BorderBrush="White" Click="AddC"/>
             <Button Margin="5"  FontFamily="Segoe MDL2 Assets" FontSize="15" Content="&#xE8A9;" Foreground="White" Background="#111111" BorderBrush="White" Click="MoveState"/>
             <Button Margin="5"  FontFamily="Segoe MDL2 Assets" FontSize="15" Content="&#xE8AB;" Foreground="White" Background="#111111" BorderBrush="White" Click="Choose"/>
+            <Button Margin="5"  FontFamily="Segoe MDL2 Assets" FontSize="15" Content="&#xE713;" Foreground="White" Background="#111111" BorderBrush="White" Click="Settings"/>
            
         </ToolBar>
         <StackPanel Height="30" VerticalAlignment="Bottom" Grid.Row="1"  Orientation="Horizontal" x:Name="Cards" x:FieldModifier="public" >

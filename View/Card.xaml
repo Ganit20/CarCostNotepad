@@ -47,7 +47,7 @@
 
         <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="2" x:FieldModifier="public" x:Name="Sums">
             <StackPanel Orientation="Horizontal">
-                <TextBlock FontSize="30">All:</TextBlock>
+                <TextBlock FontSize="30" Text="{Binding SumString}"/>
                 <TextBlock  FontSize="30" x:Name="SAll" Text="{Binding Sum}"/>
             </StackPanel>
 

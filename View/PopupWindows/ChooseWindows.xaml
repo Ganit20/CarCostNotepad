@@ -16,7 +16,7 @@
             <RowDefinition Height="10*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="Add" Grid.Column="1" Click="AddField" VerticalAlignment="Top" Content="Add"/>
+        <Button x:Name="Add" Grid.Column="1" Click="AddField" VerticalAlignment="Top" Content="&#xE710;" FontFamily="Segoe MDL2 Assets"/>
         <ListView Margin="10"  x:Name="UnChecked" Grid.Column="0" x:FieldModifier="public" MouseDoubleClick="unChecked_Double" SelectionChanged="UnChecked_SelectionChanged">
             <ListView.View>
                 <GridView>

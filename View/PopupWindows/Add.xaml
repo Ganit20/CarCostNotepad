@@ -20,15 +20,15 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="1" Orientation="Vertical">
-            <TextBlock Text="Name of Cost:"/>
+            <TextBlock Text="{Binding NameOfCostString}"/>
             <TextBox x:Name="Name"  x:FieldModifier="public"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
-            <TextBlock Text="Price"/>
-            <TextBox x:Name="Price" x:FieldModifier="public"/>
+            <TextBlock Text="{Binding PriceString}"/>
+            <TextBox x:Name="Price" PreviewTextInput="NumberValidationTextBox" x:FieldModifier="public"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Vertical">
-            <TextBlock Text="Date"/>
+            <TextBlock Text="{Binding DateString}"/>
             <DatePicker x:Name="Date" x:FieldModifier="public"/>
         </StackPanel>
         <Grid Grid.Row="3" Grid.Column="1">
@@ -36,8 +36,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="Cancel" Grid.Column="0" Margin="4" Content="Cancel" Click="Close"/>
-            <Button x:Name="AddB" Grid.Column="1" Margin="4" Content="Add" Click="AddObject"/>
+            <Button x:Name="Cancel" Grid.Column="1" Margin="4" Content="{Binding CancelString}" Click="Close"/>
+            <Button x:Name="AddB" Grid.Column="0" Margin="4" Content="{Binding AddString}" Click="AddObject"/>
             
         </Grid>
     </Grid>

@@ -14,33 +14,25 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Margin="10" Orientation="Vertical">
-            <TextBlock Text="Car Name" TextWrapping="Wrap"/>
+            <TextBlock Text="{Binding CNameString}" TextWrapping="Wrap"/>
             <TextBox  x:Name="CName" x:FieldModifier="public"  />
         </StackPanel>
         <StackPanel Margin="10" Grid.Row="1" Orientation="Vertical">
-            <TextBlock Text="Licence Plate(Optional)"  TextWrapping="Wrap"/>
-            <TextBox   x:Name="CLP" x:FieldModifier="public" />
+            <TextBlock Text="{Binding LicensePlateString}"  TextWrapping="Wrap"/>
+            <TextBox PreviewTextInput="NumberValidationTextBox"  x:Name="CLP" x:FieldModifier="public" />
             
         </StackPanel>       
         <StackPanel Margin="10" Grid.Row="2" Orientation="Vertical">
-            <TextBlock Text="Day of purchase" TextWrapping="Wrap"/>
+            <TextBlock Text="{Binding DayOPString}" TextWrapping="Wrap"/>
             <DatePicker x:Name="CDate" x:FieldModifier="public"/>
-            <ListView x:Name="ok" x:FieldModifier="public" Height="100">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-
         </StackPanel>
         <Grid Margin="10" Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="Add" Content="Create" Margin="5" Click="Add_Click"/>
-            <Button x:Name="Cancel" Grid.Column="1" Content="Cancel" Margin="5" Click="Cancel_Click"/>
+            <Button x:Name="Add" Content="{Binding AddString}" Margin="5" Click="Add_Click"/>
+            <Button x:Name="Cancel" Grid.Column="1" Content="{Binding CancelString}" Margin="5" Click="Cancel_Click"/>
         </Grid>
     </Grid>
 </Window>
