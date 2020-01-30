@@ -36,9 +36,12 @@ namespace CarCostNotepad.View.PopupWindows
 
         private void Add(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
-            name = Name.Text;
-            this.Close();
+            if (!string.IsNullOrEmpty(Name.Text))
+            {
+                this.DialogResult = true;
+                name = Name.Text;
+                this.Close();
+            }
         }
 
         private void Cancel(object sender, RoutedEventArgs e)

@@ -16,45 +16,45 @@ using CarCostNotepad.View.PopupWindows;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Wpf;
 using LiveCharts;
+using System.Threading.Tasks;
 
 namespace CarCostNotepad.View
 {
    
      
-    public partial class Card : Page
+    public partial class Card : Page 
     {
         private Frame selectedFrame ;
         private object tempFrame;
         public Car CarO;
         private bool isMoveState = false;
         public List<Frame> FieldList = new List<Frame>();
+        public List<IViewObject> FieldViewList = new List<IViewObject>();
         Settings Config;
+
 
         public Card(Car car,Settings config)
         {
+            
             Config = config;
             DataContext = Config.LanguageSet;
             CarO = car;
             InitializeComponent();
-            FieldList.Add(AA);
-            FieldList.Add(BA);
-            FieldList.Add(CA);
-            FieldList.Add(AC);
-            FieldList.Add(BC);
-            FieldList.Add(CC);
-            new SetListPosition().SetFrames(CarO,Config,this);
-            CarO.RefreshSum();
-            SAll.DataContext = CarO;
-            Chart.DataContext = config;
-            UpdateChar();
+            Initialize();
+            
+            
         }
-        public void UpdateChar()
+        public async Task Initialize()
         {
-            Chart.Series.Clear();
-            foreach (var a in CarO.Costs.Checked)
+           
+            FieldList = await new CardViewModel().CreateFrames();
+            foreach (var frame in FieldList)
             {
-                Chart.Series.Add(new PieSeries() { Values = new ChartValues<double>() { a.Sum }, Title = a.Name });
+                MainGrid.Children.Add(frame);
             }
+            FieldViewList = await new CardViewModel().CreateFieldView(CarO, this, Config);
+            await new CardViewModel().SetFrames(FieldList, FieldViewList);
+            CarO.RefreshSum();
         }
         
        
@@ -89,14 +89,16 @@ namespace CarCostNotepad.View
             else
             {
                 tempFrame = frame.Content;
-                
-                var content = (CostList)selectedFrame.Content;
-                content.List.ChoosedField = FieldList.IndexOf(frame)+1;
+                if (selectedFrame.Content != null)
+                {
+                    var content = (IViewObject)selectedFrame.Content;
+                    content.FrameNumber = FieldList.IndexOf(frame) + 1;
+                }
                 frame.Navigate(selectedFrame.Content);
                 if (tempFrame != null)
                 {
-                    var content1 = (CostList)tempFrame;
-                    content1.List.ChoosedField = FieldList.IndexOf(selectedFrame) + 1;
+                    var content1 = (IViewObject)tempFrame;
+                    content1.FrameNumber = FieldList.IndexOf(selectedFrame) + 1;
                 }
                 
                 selectedFrame.Navigate(tempFrame);
@@ -119,9 +121,6 @@ namespace CarCostNotepad.View
             }
         }
 
-        private void Chart_OnDataClick(object sender, LiveCharts.ChartPoint chartPoint)
-        {
-
-        }
+        
     }
 }

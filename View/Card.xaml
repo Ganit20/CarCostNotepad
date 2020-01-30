@@ -10,11 +10,11 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Card">
 
-    <Grid>
+    <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.2*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="0.2*"/>
         </Grid.ColumnDefinitions>
@@ -27,47 +27,7 @@
         </Grid.RowDefinitions>
 
 
-        <Frame Margin="10"  x:Name="AA" Grid.Column="1" Grid.Row="1"  x:FieldModifier="public"  RenderTransformOrigin="0.5,0.5"  />
-
-
-
-        <Frame Margin="10" x:Name="AB" Grid.Column="2" Grid.Row="1" x:FieldModifier="public"/>
-
-
-
-        <Frame Margin="10" x:Name="AC" Grid.Column="3" Grid.Row="1" x:FieldModifier="public"/>
-
-
-        <Frame Margin="10" x:Name="BA" Grid.Column="1" Grid.Row="2" x:FieldModifier="public"/>
-
-
-       
-<!--<Frame Margin="10" x:Name="BB" Grid.Column="2" Grid.Row="2" x:FieldModifier="public"/>-->
-
-
-
-        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="2" x:FieldModifier="public" x:Name="Sums">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock FontSize="30" Text="{Binding SumString}"/>
-                <TextBlock  FontSize="30" x:Name="SAll" Text="{Binding Sum}"/>
-            </StackPanel>
-
-        </StackPanel>
-
-        <lvc1:PieChart x:Name="Chart" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Visibility="{Binding ShowChart}"  LegendLocation="Bottom" DataClick="Chart_OnDataClick" />
-
-
-
-
-        <Frame Margin="10" x:Name="CA" Grid.Column="1" Grid.Row="3" x:FieldModifier="public"/>
-
-
-
-        <Frame Margin="10" x:Name="BC" Grid.Column="3" Grid.Row="2" x:FieldModifier="public"/>
-
-
-
-        <Frame Margin="10" x:Name="CC" Grid.Column="3" Grid.Row="3" x:FieldModifier="public"/>
+      
 
     </Grid>
 </Page>

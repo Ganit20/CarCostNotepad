@@ -1,5 +1,6 @@
 ﻿using CarCostNotepad.Model;
 using CarCostNotepad.ViewModel;
+using LiveCharts;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -35,15 +36,32 @@ namespace CarCostNotepad.View.SettingsWindows
             Config.ShowChart = Visibility.Visible;
             new SaveSystem().SaveSettings(Config);
         }
-
         private void Uncheck(object sender, RoutedEventArgs e)
         {
             Config.ShowChart = Visibility.Hidden;
         }
-
-        private void changed(object sender, DependencyPropertyChangedEventArgs e)
+        private void None_Checked(object sender, RoutedEventArgs e)
         {
-           
+            Config.ChartLegendPosition = LegendLocation.None;
+        }
+        private void Left_Checked(object sender, RoutedEventArgs e)
+        {
+            Config.ChartLegendPosition = LegendLocation.Left;
+        }
+
+        private void Right_Checked(object sender, RoutedEventArgs e)
+        {
+            Config.ChartLegendPosition = LegendLocation.Right;
+        }
+
+        private void Bottom_Checked(object sender, RoutedEventArgs e)
+        {
+            Config.ChartLegendPosition = LegendLocation.Bottom;
+        }
+
+        private void Top_Checked(object sender, RoutedEventArgs e)
+        {
+            Config.ChartLegendPosition = LegendLocation.Top;
         }
     }
 }

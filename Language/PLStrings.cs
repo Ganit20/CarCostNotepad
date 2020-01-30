@@ -32,7 +32,7 @@ namespace CarCostNotepad.Language
         public string RightString { get ; set; }
         public string ChartSettings { get ; set; }
         public string NoneString { get ; set; }
-
+        public string[] Month { get; set; }
         public PLStrings()
         {
             LanguageName = "Polski";
@@ -61,6 +61,19 @@ namespace CarCostNotepad.Language
             RightString = "Prawo";
             ChartSettings = "Ustawienia Wykresu";
             NoneString = "Brak";
+            Month = new string[12];
+            Month[0] = "Styczeń";
+            Month[1] = "Luty";
+            Month[2] = "Marzec";
+            Month[3] = "Kwiecień";
+            Month[4] = "Maj";
+            Month[5] = "Czerwiec";
+            Month[6] = "Lipiec";
+            Month[7] = "Sierpień";
+            Month[8] = "Wrzesień";
+            Month[9] = "Październik";
+            Month[10] = "Listopad";
+            Month[11] = "Grudzień";
         }
     }
 }

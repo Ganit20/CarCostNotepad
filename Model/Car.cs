@@ -1,4 +1,5 @@
 ﻿using CarCostNotepad.Model;
+using CarCostNotepad.View;
 using System;
 using System.ComponentModel;
 

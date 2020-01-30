@@ -47,7 +47,7 @@ namespace CarCostNotepad.View
                 Name = CName.Text,
                 LicenceNumber = CLP.Text,
                 BuyDate = CDate.SelectedDate.Value,
-                Costs = new CostGroups() 
+                Costs = new CostGroups() ,
             };
             result = c;
             var Choose = new ChooseWindows(c, Config);

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CarCostNotepad.Model
 {
-    public class CostList :INotifyPropertyChanged
+    public class CostList : INotifyPropertyChanged
     {
         public CostList()
         { 

@@ -1,5 +1,6 @@
 ﻿using CarCostNotepad.Eng;
 using CarCostNotepad.Language;
+using LiveCharts;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,10 +27,7 @@ namespace CarCostNotepad.Model
 
         public List<ILanguage> LanguageList = new List<ILanguage>();
 
-        public string CharLegendVisibility { 
-            get { return charLegendVisibility; } 
-            set { charLegendVisibility = value; NotifyPropertyChanged("CharLegendVisibility"); } }
-        public string charLegendVisibility;
+        
 
 
         Visibility showChart;
@@ -42,7 +40,8 @@ namespace CarCostNotepad.Model
             }
             set { }
         }
-
+        LegendLocation chartLegendPosition;
+        public LegendLocation ChartLegendPosition { get { return chartLegendPosition; } set { chartLegendPosition = value; NotifyPropertyChanged("ChartLegendPosition"); } }
         private ObservableCollection<CostList> DefaultCosts(ILanguage languageSet)
         {
             ObservableCollection<CostList> def = new ObservableCollection<CostList>();
@@ -70,6 +69,7 @@ namespace CarCostNotepad.Model
             LanguageList.Add(new PLStrings());
             LanguageList.Add(new EngStrings());
             LanguageSet = new EngStrings();
+            ChartLegendPosition = LegendLocation.Left;
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string v)

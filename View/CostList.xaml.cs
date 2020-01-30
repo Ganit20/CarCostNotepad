@@ -14,23 +14,32 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CarCostNotepad.ViewModel;
+using CarCostNotepad.View.PopupWindows;
 
 namespace CarCostNotepad
 {
 
-    public partial class CostList : Page
+    public partial class CostList : Page, IViewObject
+        
     {
         public Model.CostList List;
         private Car car;
         private Card ParentPage;
         Settings Config;
+        int frameNumber;
+        public int FrameNumber { get { return frameNumber; } set {
+                frameNumber = value;
+                var a = car.Costs.Checked.IndexOf(List);
+                car.Costs.Checked[a].ChoosedField = value;
+            } }
         public CostList(Car _car, Model.CostList list, Card parentPage, Settings config)
         {
-            
+           
             Config = config;
             DataContext = Config.LanguageSet;
             car = _car;
             List = list;
+            FrameNumber = list.ChoosedField;
             List.Sum = 0;
             ParentPage = parentPage;
             List = list;
@@ -49,7 +58,8 @@ namespace CarCostNotepad
             List.Sum = 0;
             new SaveSystem().Save(car);
             car.RefreshSum();
-            ParentPage.UpdateChar();
+            var chart = (Charts)ParentPage.FieldViewList[0];
+            chart.UpdateChar(car.Costs.Checked);
         }
 
         private void EditField(object sender, MouseButtonEventArgs e)
@@ -58,7 +68,8 @@ namespace CarCostNotepad
             box.IsReadOnly = false;
             box.Background = new SolidColorBrush(Colors.White);
             box.Foreground = new SolidColorBrush(Colors.Black);
-            ParentPage.UpdateChar();
+            var chart = (Charts)ParentPage.FieldViewList[0];
+            chart.UpdateChar(car.Costs.Checked);
         }
 
         private void Block(object sender, RoutedEventArgs e)
@@ -76,9 +87,14 @@ namespace CarCostNotepad
             List.Sum = 0;
             new SaveSystem().Save(car);
             car.RefreshSum();
-            ParentPage.UpdateChar();
+            var chart = (Charts)ParentPage.FieldViewList[0];
+            chart.UpdateChar(car.Costs.Checked);
         }
 
-
+        private void ShowChart(object sender, RoutedEventArgs e)
+        {
+            var popupChar = new PopUpChar(List,Config);
+            popupChar.ShowDialog();
+        }
     }
 }

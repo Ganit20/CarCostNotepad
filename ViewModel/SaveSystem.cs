@@ -20,7 +20,11 @@ namespace CarCostNotepad.ViewModel
         {
             using (var writer = new StreamWriter("Saves/" + car.Name + ".CCNF"))
             {
-                var a = JsonConvert.SerializeObject(car);
+                var a = JsonConvert.SerializeObject(car,Formatting.Indented,
+    new JsonSerializerSettings()
+    {
+        ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+    });
                 writer.Write(a);
             };
         }

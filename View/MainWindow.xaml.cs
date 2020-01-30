@@ -23,7 +23,7 @@ namespace CarCostNotepad
 
     public partial class MainWindow : Window
     {
-        List<Card> CardList = new List<Card>();
+        public List<Card> CardList = new List<Card>();
         Settings Config;
         public MainWindow()
         {
@@ -38,45 +38,21 @@ namespace CarCostNotepad
                 var Create = new CreateCar(Config);
                 Create.ShowDialog();
                 if (Create.DialogResult == true)
-                    a.Add(Create.Result);
+                {
+                    var car = Create.Result;
+                    a.Add(car);
+                }
             }
             foreach (var car in a)
             {
-                CardList.Add(new Card(car,Config));
-                Button Car = new Button();
-                Car.Background = this.Background;
-                Car.Foreground = this.Foreground;
-                if (car.Name.Length * 15 < 50)
-                    Car.Width = 50;
-                else
-                    Car.Width = car.Name.Length * 15;
-                Car.Content = car.Name;
-                Car.Click += GoToCard;
-                Cards.Children.Add(Car);
-                if(car.Costs.Unchecked.Count==0)
-                {
-                    car.Costs.Unchecked = Config.GetDefaultCostFields;
-                }
-                
-
+                new MainWindowViewModel().CreateButton(this, Config, car);
             }
             Cards.Children[0].RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
            
 
         }
 
-        private void GoToCard(object sender, RoutedEventArgs e)
-        {
-            foreach (Button card in Cards.Children)
-            {
-                card.Background = this.Background;
-            }
-            var button = (Button)sender;
-            button.Background = Brushes.Blue;
-            var CardObject = CardList.Find(e => e.CarO.Name ==button.Content);
-            MainFrame.Navigate(new Card(CardObject.CarO,Config));
-        }
-
+        
         private void MoveState(object sender, RoutedEventArgs e)
         {
             var card = (Card)MainFrame.Content;
@@ -88,6 +64,7 @@ namespace CarCostNotepad
             var card = (Card) MainFrame.Content;
             var choose = new ChooseWindows(card.CarO,Config);
             choose.ShowDialog();
+
             MainFrame.Navigate(new Card(choose.Result,Config));
             var CardObject = CardList.IndexOf(CardList.Find(e => e.CarO.Name == choose.Result.Name));
             CardList[CardObject].CarO = choose.Result;
@@ -99,18 +76,9 @@ namespace CarCostNotepad
             var create = new CreateCar(Config);
             create.ShowDialog();
             if (create.DialogResult == true)
-            {
+            {   
                 CardList.Add(new Card(create.Result,Config));
-                Button Car = new Button();
-                Car.Background = this.Background;
-                Car.Foreground = this.Foreground;
-                if (create.Result.Name.Length * 15 < 50)
-                    Car.Width = 50;
-                else
-                    Car.Width = create.Result.Name.Length * 15;
-                Car.Content = create.Result.Name;
-                Car.Click += GoToCard;
-                Cards.Children.Add(Car);
+                new MainWindowViewModel().CreateButton(this, Config, create.Result);
             }
         }
 

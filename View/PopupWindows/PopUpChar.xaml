@@ -1,0 +1,28 @@
+﻿<Window x:Class="CarCostNotepad.View.PopupWindows.PopUpChar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarCostNotepad.View.PopupWindows"
+        xmlns:lvc1="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        mc:Ignorable="d" Background="DimGray" Foreground="White"
+        Title="PopUpChar" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <lvc1:PieChart x:Name="Chart" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"  LegendLocation="Right"  />
+        <lvc1:CartesianChart x:Name="Cartesian" LegendLocation="Right" >
+            <lvc1:CartesianChart.AxisX>
+                <lvc1:Axis Labels="{Binding Month}"></lvc1:Axis>
+            </lvc1:CartesianChart.AxisX>
+        </lvc1:CartesianChart>
+
+        <TextBlock Foreground="White" Text="{Binding Summary}"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2" x:FieldModifier="public" x:Name="Sums">
+            <TextBlock FontSize="30" Text="{Binding SumString}"/>
+            <TextBlock  FontSize="30" x:Name="SAll" Text="{Binding Sum}"/>
+        </StackPanel>
+    </Grid>
+</Window>

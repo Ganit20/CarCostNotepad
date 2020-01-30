@@ -40,13 +40,13 @@
                     <TextBlock  Text="{Binding ShowChartSetting}"/>
                 </StackPanel>
             <StackPanel Margin="5" Grid.Row="1" Orientation="Vertical" >
-                <TextBlock  Text="{Binding ShowChartSetting}"/>
+                <TextBlock  Text="{Binding CharLegendVisibility}"/>
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton x:Name="Top" IsEnabledChanged="changed" Foreground="White" GroupName="ChartLegend" Margin="2" Content="{Binding TopString}"/>
-                    <RadioButton x:Name="Bottom" Foreground="White" GroupName="ChartLegend" Margin="2" Content="{Binding BottomString}"/>
-                    <RadioButton x:Name="left" Foreground="White" GroupName="ChartLegend" Margin="2" Content="{Binding LeftString}"/>
-                    <RadioButton x:Name="Right" Foreground="White" GroupName="ChartLegend" Margin="2" Content="{Binding RightString}"/>
-                    <RadioButton x:Name="None" Foreground="White" GroupName="ChartLegend" Margin="2" Content="{Binding NoneString}"/>
+                    <RadioButton x:Name="Top" Checked="Top_Checked" Foreground="White" GroupName="ChartLegend" Margin="2" Content="{Binding TopString}"/>
+                    <RadioButton x:Name="Bottom" Checked="Bottom_Checked" Foreground="White" GroupName="ChartLegend" Margin="2" Content="{Binding BottomString}"/>
+                    <RadioButton x:Name="Left" Checked="Left_Checked" Foreground="White" GroupName="ChartLegend" Margin="2" Content="{Binding LeftString}"/>
+                    <RadioButton x:Name="Right" Checked="Right_Checked" Foreground="White" GroupName="ChartLegend" Margin="2" Content="{Binding RightString}"/>
+                    <RadioButton x:Name="None" Checked="None_Checked" Foreground="White" GroupName="ChartLegend" Margin="2" Content="{Binding NoneString}"/>
                 </StackPanel>
                 
                 

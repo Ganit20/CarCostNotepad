@@ -33,6 +33,7 @@ namespace CarCostNotepad.Eng
         public string RightString { get; set  ; }
         public string ChartSettings { get ; set; }
         public string NoneString { get ; set; }
+        public string[] Month { get ; set ; }
 
         public EngStrings()
         {
@@ -62,6 +63,19 @@ namespace CarCostNotepad.Eng
             RightString = "Right";
             ChartSettings = "Chart Settings";
             NoneString = "None";
+            Month = new string[12];
+            Month[0] = "January";
+            Month[1] = "February";
+            Month[2] = "March";
+            Month[3] = "April";
+            Month[4] = "May";
+            Month[5] = "June";
+            Month[6] = "July";
+            Month[7] = "August";
+            Month[8] = "September";
+            Month[9] = "October";
+            Month[10] = "November";
+            Month[11] = "December";
         }
     }
 }

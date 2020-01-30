@@ -7,18 +7,18 @@ namespace CarCostNotepad.Language
     public interface ILanguage
     {
         string LanguageName { get; set; }
-         string CNameString { get; set; }
-         string LicensePlateString { get; set; }
-         string SumString { get; set; }
-         string DayOPString { get; set; }
-         string AddString { get; set; }
-         string CancelString { get; set; }
-     string NameOfCostString { get; set; }
-         string PriceString { get; set; }
-         string DateString { get; set; }
-         string EditString { get; set; }
-         string NameString { get; set; }
-         string GeneralSettingsString { get; set; }
+        string CNameString { get; set; }
+        string LicensePlateString { get; set; }
+        string SumString { get; set; }
+        string DayOPString { get; set; }
+        string AddString { get; set; }
+        string CancelString { get; set; }
+        string NameOfCostString { get; set; }
+        string PriceString { get; set; }
+        string DateString { get; set; }
+        string EditString { get; set; }
+        string NameString { get; set; }
+        string GeneralSettingsString { get; set; }
         string Language { get; set; }
         string FuelCostString { get; set; }
         string OtherCostString { get; set; }
@@ -32,5 +32,6 @@ namespace CarCostNotepad.Language
         string LeftString { get; set; }
         string RightString { get; set; }
         string NoneString { get; set; }
+        string[] Month {get;set;}
     }
 }
