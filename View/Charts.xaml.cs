@@ -26,18 +26,18 @@ namespace CarCostNotepad.View
 
 
         Settings Config;
-        Car CarO;
+        IMainObject MObject;
         public int FrameNumber
         {
-            get { return CarO.Costs.SummaryPosition; }
+            get { return MObject.Costs.SummaryPosition; }
             set
             {
-                CarO.Costs.SummaryPosition = value;
+                MObject.Costs.SummaryPosition = value;
             }
         }
-        public Charts(Settings config,Car car)
+        public Charts(Settings config, IMainObject mObject)
         {
-            CarO = car;
+            MObject = mObject;
             if(FrameNumber==0)
             {
                 FrameNumber = 3;
@@ -46,7 +46,7 @@ namespace CarCostNotepad.View
             InitializeComponent();
             Chart.DataContext = config;
             this.DataContext = config.LanguageSet;
-            SAll.DataContext = car;
+            SAll.DataContext = mObject;
             
         }
         public void UpdateChar(ObservableCollection<Model.CostList> Checked)

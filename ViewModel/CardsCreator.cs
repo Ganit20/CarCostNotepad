@@ -36,8 +36,8 @@ namespace CarCostNotepad.ViewModel
             }
             var button = (Button)sender;
             button.Background = Brushes.Blue;
-            var CardObject = CardList.Find(e => e.CarO.Name == button.Content);
-            Window.MainFrame.Navigate(new Card(CardObject.CarO, Config));
+            var CardObject = CardList.Find(e => e.MObject.Name == button.Content);
+            Window.MainFrame.Navigate(new Card(CardObject.MObject, Config));
         }
     }
 }

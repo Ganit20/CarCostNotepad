@@ -16,32 +16,44 @@ namespace CarCostNotepad.ViewModel
                 Directory.CreateDirectory("Saves");
             }
         }
-        public void Save(Car car)
+        public void Save(IMainObject car)
         {
-            using (var writer = new StreamWriter("Saves/" + car.Name + ".CCNF"))
-            {
-                var a = JsonConvert.SerializeObject(car,Formatting.Indented,
-    new JsonSerializerSettings()
-    {
-        ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-    });
-                writer.Write(a);
-            };
+            
+                Newtonsoft.Json.JsonSerializer serializer = new Newtonsoft.Json.JsonSerializer();
+                serializer.Converters.Add(new Newtonsoft.Json.Converters.JavaScriptDateTimeConverter());
+                serializer.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+                serializer.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Auto;
+                serializer.Formatting = Newtonsoft.Json.Formatting.Indented;
+            
+                 
+                
+
+
+                using (StreamWriter sw = new StreamWriter("Saves/" + car.Name + ".CCNF"))
+                using (Newtonsoft.Json.JsonWriter writer = new Newtonsoft.Json.JsonTextWriter(sw))
+                { 
+                if (car.GetType() == typeof(Car)) 
+                    serializer.Serialize(writer, car, typeof(Car));
+                }
+            
         }
-        public List<Car> Load()
+        public List<IMainObject> Load()
         {
-            List<Car> Cars = new List<Car>();
+            List<IMainObject> mainObjects = new List<IMainObject>();
             var directory = new DirectoryInfo(@"Saves\");
             var saves = directory.GetFiles("*.CCNF");
             foreach(var file in saves)
             {
-                using(var Reader = new StreamReader(file.FullName))
-                {
+                
                    
-                    Cars.Add(JsonConvert.DeserializeObject<Car>(Reader.ReadToEnd()));
-                }
+                    mainObjects.Add(JsonConvert.DeserializeObject<IMainObject>(File.ReadAllText(file.FullName), new Newtonsoft.Json.JsonSerializerSettings
+                    {
+                        TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Auto,
+                        NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore,
+                    }));
+                
             }
-            return Cars;
+            return mainObjects;
         }
       public void SaveSettings(Settings set)
         {
@@ -50,7 +62,7 @@ namespace CarCostNotepad.ViewModel
                 var a = JsonConvert.SerializeObject(set, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
                 writer.Write(a);
             };
-        }
+        }Newtonsoft.Json.JsonSerializationException: 'Could not create an instance of type CarCostNotepad.Model.IMainObject. Type is an interface or abstract class and cannot be instantiated. Path 'sum', line 2, position 8.'
         public Settings LoadSettings()
         {
             Settings set = new Settings();

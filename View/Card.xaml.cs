@@ -26,19 +26,19 @@ namespace CarCostNotepad.View
     {
         private Frame selectedFrame ;
         private object tempFrame;
-        public Car CarO;
+        public IMainObject MObject;
         private bool isMoveState = false;
         public List<Frame> FieldList = new List<Frame>();
         public List<IViewObject> FieldViewList = new List<IViewObject>();
         Settings Config;
 
 
-        public Card(Car car,Settings config)
+        public Card(IMainObject car,Settings config)
         {
             
             Config = config;
             DataContext = Config.LanguageSet;
-            CarO = car;
+            MObject = car;
             InitializeComponent();
             Initialize();
             
@@ -52,9 +52,9 @@ namespace CarCostNotepad.View
             {
                 MainGrid.Children.Add(frame);
             }
-            FieldViewList = await new CardViewModel().CreateFieldView(CarO, this, Config);
+            FieldViewList = await new CardViewModel().CreateFieldView(MObject, this, Config);
             await new CardViewModel().SetFrames(FieldList, FieldViewList);
-            CarO.RefreshSum();
+            MObject.RefreshSum();
         }
         
        
@@ -117,7 +117,7 @@ namespace CarCostNotepad.View
 
                 field.Background = null;
                 field.MouseDown -= new MouseButtonEventHandler(Move);
-                new SaveSystem().Save(CarO);
+                new SaveSystem().Save(MObject);
             }
         }
 

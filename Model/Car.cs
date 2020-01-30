@@ -5,10 +5,13 @@ using System.ComponentModel;
 
 namespace CarCostNotepad.ViewModel
 {
-    public class Car : INotifyPropertyChanged
+    public class Car : INotifyPropertyChanged, IMainObject
     {
-       
-        public CostGroups Costs = new CostGroups();
+       public Car()
+        {
+            Type = "Car";
+        }
+        public CostGroups Costs{get;set;}
         public double sum;
 
         public double Sum
@@ -35,6 +38,8 @@ namespace CarCostNotepad.ViewModel
         public string Name { get; set; }
         public DateTime BuyDate = new DateTime();
         public string LicenceNumber { get; set; }
+        public string Type { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string v)
         {

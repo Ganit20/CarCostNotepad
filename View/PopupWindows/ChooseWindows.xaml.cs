@@ -21,29 +21,29 @@ namespace CarCostNotepad.View.PopupWindows
     public partial class ChooseWindows : Window
     {
         
-        public Car Result
+        public IMainObject Result
         {
-            get { return CarL; }
+            get { return MObject; }
         }
-        Car CarL= new Car();
+        IMainObject MObject;
         Settings Config;
-        public ChooseWindows(Car car, Settings config)
+        public ChooseWindows(IMainObject mObject, Settings config)
         {
             Config = config;
             DataContext = Config.LanguageSet;
-            CarL = car;
+            MObject = mObject;
             InitializeComponent();
-            UnChecked.ItemsSource = CarL.Costs.Unchecked;
-            Checked.ItemsSource = CarL.Costs.Checked;
+            UnChecked.ItemsSource = MObject.Costs.Unchecked;
+            Checked.ItemsSource = MObject.Costs.Checked;
         }
 
         private void ToChecked_Click(object sender, RoutedEventArgs e)
         {
-            if (UnChecked.SelectedItem != null && CarL.Costs.Checked.Count<6)
+            if (UnChecked.SelectedItem != null && MObject.Costs.Checked.Count<6)
             {
-                var a = CarL.Costs.Unchecked.Where(e => e == UnChecked.SelectedItem);
-                CarL.Costs.Checked.Add(a.First());
-                CarL.Costs.Unchecked.Remove(a.First());
+                var a = MObject.Costs.Unchecked.Where(e => e == UnChecked.SelectedItem);
+                MObject.Costs.Checked.Add(a.First());
+                MObject.Costs.Unchecked.Remove(a.First());
             }
         }
 
@@ -51,15 +51,15 @@ namespace CarCostNotepad.View.PopupWindows
         {
             if (Checked.SelectedItem != null)
             {
-                var a = CarL.Costs.Checked.Where(e => e == Checked.SelectedItem);
-            CarL.Costs.Unchecked.Add(a.First());
-            CarL.Costs.Checked.Remove(a.First());
+                var a = MObject.Costs.Checked.Where(e => e == Checked.SelectedItem);
+            MObject.Costs.Unchecked.Add(a.First());
+            MObject.Costs.Checked.Remove(a.First());
             }
         }
 
         private void UnChecked_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (((ListView)sender != null) && (CarL.Costs.Checked.Count < 6))
+            if (((ListView)sender != null) && (MObject.Costs.Checked.Count < 6))
             {
                 ToChecked.IsEnabled = true;
             }
@@ -82,9 +82,9 @@ namespace CarCostNotepad.View.PopupWindows
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
-            foreach(var Checked in CarL.Costs.Checked)
+            foreach(var Checked in MObject.Costs.Checked)
             {
-                Checked.ChoosedField = CarL.Costs.Checked.IndexOf(Checked) + 1;
+                Checked.ChoosedField = MObject.Costs.Checked.IndexOf(Checked) + 1;
             }
             this.Close();
         }
@@ -93,19 +93,19 @@ namespace CarCostNotepad.View.PopupWindows
         {
             if (Checked.SelectedItem != null)
             {
-                var a = CarL.Costs.Checked.Where(e => e == Checked.SelectedItem);
-            CarL.Costs.Unchecked.Add(a.First());
-            CarL.Costs.Checked.Remove(a.First());
+                var a = MObject.Costs.Checked.Where(e => e == Checked.SelectedItem);
+            MObject.Costs.Unchecked.Add(a.First());
+            MObject.Costs.Checked.Remove(a.First());
             }
         }
 
         private void unChecked_Double(object sender, MouseButtonEventArgs e)
         {
-            if ((UnChecked.SelectedItem != null) && (CarL.Costs.Checked.Count < 6))
+            if ((UnChecked.SelectedItem != null) && (MObject.Costs.Checked.Count < 6))
             {
-                var a = CarL.Costs.Unchecked.Where(e => e == UnChecked.SelectedItem);
-            CarL.Costs.Checked.Add(a.First());
-            CarL.Costs.Unchecked.Remove(a.First());
+                var a = MObject.Costs.Unchecked.Where(e => e == UnChecked.SelectedItem);
+            MObject.Costs.Checked.Add(a.First());
+            MObject.Costs.Unchecked.Remove(a.First());
             }
         }
 
@@ -115,7 +115,7 @@ namespace CarCostNotepad.View.PopupWindows
             a.ShowDialog();
             if (a.DialogResult.Value)
             {
-                CarL.Costs.Unchecked.Add(new Model.CostList()
+                MObject.Costs.Unchecked.Add(new Model.CostList()
                 {
                     Name=a.FieldName
                 });

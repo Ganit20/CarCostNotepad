@@ -36,17 +36,17 @@ namespace CarCostNotepad.ViewModel
             }
             return FrameList;
         }
-        public async Task<List<IViewObject>> CreateFieldView(Car car,Card card,Settings conf)
+        public async Task<List<IViewObject>> CreateFieldView(IMainObject mobject,Card card,Settings conf)
         {
             List<IViewObject> FieldViewList = new List<IViewObject>();
-            var c = new Charts(conf,car);
-            c.FrameNumber = car.Costs.SummaryPosition;
+            var c = new Charts(conf, mobject);
+            c.FrameNumber = mobject.Costs.SummaryPosition;
             FieldViewList.Add(c);
             
             var a = (Charts)FieldViewList[0];
-            a.UpdateChar(car.Costs.Checked);
-            foreach(var Checked in car.Costs.Checked) {
-                FieldViewList.Add(new CostList(car,Checked,card,conf));
+            a.UpdateChar(mobject.Costs.Checked);
+            foreach(var Checked in mobject.Costs.Checked) {
+                FieldViewList.Add(new CostList(mobject, Checked,card,conf));
             }
             return FieldViewList;
         }

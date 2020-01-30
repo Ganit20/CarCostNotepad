@@ -1,5 +1,6 @@
 ﻿using CarCostNotepad.Model;
 using CarCostNotepad.View;
+using CarCostNotepad.View.PopupWindows;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,30 +14,45 @@ namespace CarCostNotepad.ViewModel
     {
         MainWindow main;
         Settings Config;
-       public void CreateButton(MainWindow mainWindow,Settings config,Car car)
+       public void CreateButton(MainWindow mainWindow,Settings config, IMainObject obj)
         {
             main = mainWindow;
             Config = config;
            
-                mainWindow.CardList.Add(new Card(car, Config));
+                mainWindow.CardList.Add(new Card(obj, Config));
                 Button Car = new Button();
                 Car.Background = mainWindow.Background;
                 Car.Foreground = mainWindow.Foreground;
-                if (car.Name.Length * 15 < 50)
+                if (obj.Name.Length * 15 < 50)
                     Car.Width = 50;
                 else
-                    Car.Width = car.Name.Length * 15;
-                Car.Content = car.Name;
+                    Car.Width = obj.Name.Length * 15;
+                Car.Content = obj.Name;
                 Car.Click += GoToCard;
                 mainWindow.Cards.Children.Add(Car);
-                if (car.Costs.Unchecked.Count == 0)
+                if (obj.Costs.Unchecked.Count == 0)
                 {
-                    car.Costs.Unchecked = Config.GetDefaultCostFields;
+                    obj.Costs.Unchecked = Config.GetDefaultCostFields;
                 }
 
 
             }
-        
+      public   void LoadObjects(MainWindow main,Settings config)
+        {
+            main.Objects.Clear();
+            var a = new SaveSystem().Load();
+            main.Objects = a;
+            if (a.Count == 0)
+            {
+                var Create = new MainObjectCreator(config, main);
+                Create.ShowDialog();
+            }
+            foreach (var car in a)
+            {
+                new MainWindowViewModel().CreateButton(main, config, car);
+            }
+            main.Cards.Children[0].RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+        }
         private void GoToCard(object sender, RoutedEventArgs e)
         {
             foreach (Button card in main.Cards.Children)
@@ -45,8 +61,8 @@ namespace CarCostNotepad.ViewModel
             }
             var button = (Button)sender;
             button.Background = Brushes.Blue;
-            var CardObject = main.CardList.Find(e => e.CarO.Name == button.Content);
-            main.MainFrame.Navigate(new Card(CardObject.CarO, Config));
+            var CardObject = main.CardList.Find(e => e.MObject.Name == button.Content);
+            main.MainFrame.Navigate(new Card(CardObject.MObject, Config));
         }
 
     }

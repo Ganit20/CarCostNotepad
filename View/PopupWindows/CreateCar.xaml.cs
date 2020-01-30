@@ -20,7 +20,7 @@ namespace CarCostNotepad.View
     /// <summary>
     /// Logika interakcji dla klasy CreateCar.xaml
     /// </summary>
-    public partial class CreateCar : Window
+    public partial class CreateCar : Page
     {
         Car result = new Car();
         public Car Result
@@ -28,9 +28,12 @@ namespace CarCostNotepad.View
             get { return result; }
         }
         Settings Config;
-
-        public CreateCar(Settings config)
+        MainObjectCreator Parent;
+        MainWindow mainWindow;
+        public CreateCar(Settings config,MainObjectCreator parent,MainWindow _mainWindow)
         {
+            mainWindow = _mainWindow;
+            Parent = parent;
             Config = config;
             DataContext = Config.LanguageSet;         
             InitializeComponent();
@@ -52,15 +55,16 @@ namespace CarCostNotepad.View
             result = c;
             var Choose = new ChooseWindows(c, Config);
             Choose.ShowDialog();
-            result = Choose.Result;
+            result.Costs = Choose.Result.Costs;
             new SaveSystem().Save(result);
-            this.DialogResult = true;
-            this.Close();
+           mainWindow.Objects.Add(c);
+            Parent.DialogResult = true;
+            Parent.Close();
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Parent.Close();
         }
     }
 }

@@ -23,21 +23,21 @@ namespace CarCostNotepad
         
     {
         public Model.CostList List;
-        private Car car;
+        private IMainObject MObject;
         private Card ParentPage;
         Settings Config;
         int frameNumber;
         public int FrameNumber { get { return frameNumber; } set {
                 frameNumber = value;
-                var a = car.Costs.Checked.IndexOf(List);
-                car.Costs.Checked[a].ChoosedField = value;
+                var a = MObject.Costs.Checked.IndexOf(List);
+                MObject.Costs.Checked[a].ChoosedField = value;
             } }
-        public CostList(Car _car, Model.CostList list, Card parentPage, Settings config)
+        public CostList(IMainObject mObject, Model.CostList list, Card parentPage, Settings config)
         {
            
             Config = config;
             DataContext = Config.LanguageSet;
-            car = _car;
+            MObject = mObject;
             List = list;
             FrameNumber = list.ChoosedField;
             List.Sum = 0;
@@ -56,10 +56,10 @@ namespace CarCostNotepad
             var row = selected.DataContext;
             List.List.Remove((Cost)row);
             List.Sum = 0;
-            new SaveSystem().Save(car);
-            car.RefreshSum();
+            new SaveSystem().Save(MObject);
+            MObject.RefreshSum();
             var chart = (Charts)ParentPage.FieldViewList[0];
-            chart.UpdateChar(car.Costs.Checked);
+            chart.UpdateChar(MObject.Costs.Checked);
         }
 
         private void EditField(object sender, MouseButtonEventArgs e)
@@ -69,7 +69,7 @@ namespace CarCostNotepad
             box.Background = new SolidColorBrush(Colors.White);
             box.Foreground = new SolidColorBrush(Colors.Black);
             var chart = (Charts)ParentPage.FieldViewList[0];
-            chart.UpdateChar(car.Costs.Checked);
+            chart.UpdateChar(MObject.Costs.Checked);
         }
 
         private void Block(object sender, RoutedEventArgs e)
@@ -85,10 +85,10 @@ namespace CarCostNotepad
             Add addWindow = new Add(List.List,Config);
             addWindow.ShowDialog();
             List.Sum = 0;
-            new SaveSystem().Save(car);
-            car.RefreshSum();
+            new SaveSystem().Save(MObject);
+            MObject.RefreshSum();
             var chart = (Charts)ParentPage.FieldViewList[0];
-            chart.UpdateChar(car.Costs.Checked);
+            chart.UpdateChar(MObject.Costs.Checked);
         }
 
         private void ShowChart(object sender, RoutedEventArgs e)

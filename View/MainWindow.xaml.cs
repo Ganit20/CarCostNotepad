@@ -24,6 +24,7 @@ namespace CarCostNotepad
     public partial class MainWindow : Window
     {
         public List<Card> CardList = new List<Card>();
+        public List<IMainObject> Objects = new List<IMainObject>();
         Settings Config;
         public MainWindow()
         {
@@ -31,25 +32,7 @@ namespace CarCostNotepad
             InitializeComponent();
             Settings config = new SaveSystem().LoadSettings();
             Config = config;
-            
-            var a = new SaveSystem().Load();
-            if (a.Count == 0)
-            {
-                var Create = new CreateCar(Config);
-                Create.ShowDialog();
-                if (Create.DialogResult == true)
-                {
-                    var car = Create.Result;
-                    a.Add(car);
-                }
-            }
-            foreach (var car in a)
-            {
-                new MainWindowViewModel().CreateButton(this, Config, car);
-            }
-            Cards.Children[0].RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-           
-
+            new MainWindowViewModel().LoadObjects(this,Config);
         }
 
         
@@ -62,24 +45,20 @@ namespace CarCostNotepad
         private void Choose(object sender, RoutedEventArgs e)
         {
             var card = (Card) MainFrame.Content;
-            var choose = new ChooseWindows(card.CarO,Config);
+            var choose = new ChooseWindows(card.MObject,Config);
             choose.ShowDialog();
 
             MainFrame.Navigate(new Card(choose.Result,Config));
-            var CardObject = CardList.IndexOf(CardList.Find(e => e.CarO.Name == choose.Result.Name));
-            CardList[CardObject].CarO = choose.Result;
+            var CardObject = CardList.IndexOf(CardList.Find(e => e.MObject.Name == choose.Result.Name));
+            CardList[CardObject].MObject = choose.Result;
             new SaveSystem().Save(choose.Result);
         }
 
         private void AddC(object sender, RoutedEventArgs e)
         {
-            var create = new CreateCar(Config);
+            var create = new MainObjectCreator(Config,this);
             create.ShowDialog();
-            if (create.DialogResult == true)
-            {   
-                CardList.Add(new Card(create.Result,Config));
-                new MainWindowViewModel().CreateButton(this, Config, create.Result);
-            }
+            new MainWindowViewModel().LoadObjects(this,Config);
         }
 
         private void Settings(object sender, RoutedEventArgs e)
