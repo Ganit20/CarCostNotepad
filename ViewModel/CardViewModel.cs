@@ -17,13 +17,13 @@ namespace CarCostNotepad.ViewModel
             int x = 1;
             int y = 1;
             List<Frame> FrameList = new List<Frame>();
-            for (int i = 1; i <= 9; i++)
+            for (int i = 1; i <= 12; i++)
             {
                 Frame frame = new Frame();
-                frame.SetValue(Grid.RowProperty, x);
-                frame.SetValue(Grid.ColumnProperty, y);
+                frame.SetValue(Grid.RowProperty, y);
+                frame.SetValue(Grid.ColumnProperty, x);
                 frame.Margin = new Thickness(10);
-                if (i % 3 == 0)
+                if (i % 4 == 0)
                 {
                     y = 1;
                     x++;
@@ -32,21 +32,17 @@ namespace CarCostNotepad.ViewModel
                 {
                     y++;
                 }
+               
                 FrameList.Add(frame);
+                
             }
             return FrameList;
         }
         public async Task<List<IViewObject>> CreateFieldView(IMainObject mobject,Card card,Settings conf)
         {
             List<IViewObject> FieldViewList = new List<IViewObject>();
-            var c = new Charts(conf, mobject);
-            c.FrameNumber = mobject.Costs.SummaryPosition;
-            FieldViewList.Add(c);
-            
-            var a = (Charts)FieldViewList[0];
-            a.UpdateChar(mobject.Costs.Checked);
             foreach(var Checked in mobject.Costs.Checked) {
-                FieldViewList.Add(new CostList(mobject, Checked,card,conf));
+                FieldViewList.Add(new CostList(mobject, Checked,card,conf,card.SummaryField));
             }
             return FieldViewList;
         }

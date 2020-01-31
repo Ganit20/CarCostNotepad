@@ -43,7 +43,7 @@
 
 
 
-            <ListView x:Name="CostListField" Grid.Row="1"  Background="Gray">
+            <ListView x:Name="CostListField" Grid.Row="1" Background="Gray">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="{Binding NameString}">

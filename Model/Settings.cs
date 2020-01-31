@@ -12,7 +12,7 @@ namespace CarCostNotepad.Model
 {
     public class Settings :INotifyPropertyChanged
     {
-        public ILanguage languageSet { get; set; }
+        ILanguage languageSet { get; set; }
         public ILanguage LanguageSet 
         { 
             get 
@@ -24,14 +24,19 @@ namespace CarCostNotepad.Model
                 NotifyPropertyChanged("LanguageSet"); 
             } 
         }
-
+        int choosedYear { get; set; }
+        public int ChoosedYear { get { return choosedYear; } set { choosedYear = value; NotifyPropertyChanged("ChoosedYear"); } }
+        int choosedYearDetails { get; set; }
+        public int ChoosedYearDetails { get { return choosedYearDetails; } set { choosedYearDetails = value; NotifyPropertyChanged("ChoosedYearDetails"); } }
         public List<ILanguage> LanguageList = new List<ILanguage>();
 
-        
+        public ObservableCollection<CostList> Unchecked = new ObservableCollection<CostList>();
 
 
         Visibility showChart;
-        public Visibility ShowChart { get { return showChart; } set {  showChart = value; NotifyPropertyChanged("ShowChart"); } }
+        public Visibility ShowChart { get { return showChart; } set { showChart = value; NotifyPropertyChanged("ShowChart"); } }
+       Visibility showCartesianChart;
+        public Visibility ShowCartesianChart { get { return showCartesianChart; } set { showCartesianChart = value; NotifyPropertyChanged("ShowCartesianChart"); } }
         public ObservableCollection<CostList> GetDefaultCostFields
         {
             get
@@ -42,6 +47,8 @@ namespace CarCostNotepad.Model
         }
         LegendLocation chartLegendPosition;
         public LegendLocation ChartLegendPosition { get { return chartLegendPosition; } set { chartLegendPosition = value; NotifyPropertyChanged("ChartLegendPosition"); } }
+        LegendLocation cartesianChartLegendPosition;
+        public LegendLocation CartesianChartLegendPosition { get { return cartesianChartLegendPosition; } set { cartesianChartLegendPosition = value; NotifyPropertyChanged("CartesianChartLegendPosition"); } }
         private ObservableCollection<CostList> DefaultCosts(ILanguage languageSet)
         {
             ObservableCollection<CostList> def = new ObservableCollection<CostList>();
@@ -66,10 +73,14 @@ namespace CarCostNotepad.Model
         public void LoadDefault()
         {
             ShowChart = Visibility.Visible;
+            ShowCartesianChart = Visibility.Visible;
             LanguageList.Add(new PLStrings());
             LanguageList.Add(new EngStrings());
             LanguageSet = new EngStrings();
-            ChartLegendPosition = LegendLocation.Left;
+            ChartLegendPosition = LegendLocation.Bottom;
+            CartesianChartLegendPosition = LegendLocation.None;
+            ChoosedYear = DateTime.Now.Year;
+            ChoosedYearDetails = DateTime.Now.Year;
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string v)

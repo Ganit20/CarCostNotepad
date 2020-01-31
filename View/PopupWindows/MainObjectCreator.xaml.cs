@@ -1,6 +1,8 @@
 ﻿using CarCostNotepad.Model;
+using CarCostNotepad.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,11 +20,32 @@ namespace CarCostNotepad.View.PopupWindows
     /// </summary>
     public partial class MainObjectCreator : Window
     {
-        public MainObjectCreator(Settings Config,MainWindow main)
+        public List<string> MObjectTypes = new List<string>();
+        MainWindow Main;
+        Settings Config;
+        public MainObjectCreator(Settings config,MainWindow main)
         {
+            Config = config;
+            Main = main;
+            MObjectTypes.Add("Car");
+            MObjectTypes.Add("Home");
+
             InitializeComponent();
-            Types.ItemsSource = new MainObjectsList().mainObjects;
-            MainFrame.Navigate(new CreateCar(Config,this,main));
+            DataContext = config.LanguageSet;
+            Types.ItemsSource = MObjectTypes;
+            
+        }
+       
+        private void Types_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch(Types.SelectedValue)
+            {
+                case "Car":
+                    MainFrame.Navigate(new CreateCar(Config, this, Main));
+                    break;
+               case "Home":
+                    break;
+            }
         }
     }
 }

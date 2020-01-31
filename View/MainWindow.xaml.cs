@@ -65,6 +65,8 @@ namespace CarCostNotepad
         {
             var set = new SettingsWindow(Config) ;
             set.ShowDialog();
+            new SaveSystem().SaveSettings(Config);
+            new MainWindowViewModel().LoadObjects(this, Config);
         }
     }
 }

@@ -30,15 +30,16 @@ namespace CarCostNotepad.ViewModel
                 Car.Content = obj.Name;
                 Car.Click += GoToCard;
                 mainWindow.Cards.Children.Add(Car);
-                if (obj.Costs.Unchecked.Count == 0)
+                if (config.Unchecked.Count == 0)
                 {
-                    obj.Costs.Unchecked = Config.GetDefaultCostFields;
+                config.Unchecked = Config.GetDefaultCostFields;
                 }
 
 
             }
       public   void LoadObjects(MainWindow main,Settings config)
         {
+            main.Cards.Children.Clear();
             main.Objects.Clear();
             var a = new SaveSystem().Load();
             main.Objects = a;

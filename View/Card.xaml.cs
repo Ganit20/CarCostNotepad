@@ -31,7 +31,7 @@ namespace CarCostNotepad.View
         public List<Frame> FieldList = new List<Frame>();
         public List<IViewObject> FieldViewList = new List<IViewObject>();
         Settings Config;
-
+        public Summary SummaryField;
 
         public Card(IMainObject car,Settings config)
         {
@@ -46,19 +46,31 @@ namespace CarCostNotepad.View
         }
         public async Task Initialize()
         {
-           
+            var summaryField = new Summary(Config, MObject);
+            SummaryField = summaryField;
+            Summary.Navigate(summaryField);
             FieldList = await new CardViewModel().CreateFrames();
             foreach (var frame in FieldList)
             {
+                frame.MouseDown += ShowDetails;
                 MainGrid.Children.Add(frame);
             }
             FieldViewList = await new CardViewModel().CreateFieldView(MObject, this, Config);
             await new CardViewModel().SetFrames(FieldList, FieldViewList);
             MObject.RefreshSum();
+            
         }
-        
-       
-       
+
+        private void ShowDetails(object sender, MouseButtonEventArgs e)
+        {
+            var a = (Frame)sender;
+            if (a.Content != null)
+            {
+                var b = (CostList)a.Content;
+                SummaryField.Details.Navigate(new Details(b.List, Config));
+            }
+        }
+
         public  void MoveState()
         {
             if (!isMoveState)
@@ -119,6 +131,7 @@ namespace CarCostNotepad.View
                 field.MouseDown -= new MouseButtonEventHandler(Move);
                 new SaveSystem().Save(MObject);
             }
+            isMoveState = false;
         }
 
         

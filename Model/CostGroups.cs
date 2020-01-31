@@ -7,10 +7,10 @@ namespace CarCostNotepad.Model
 {
     public class CostGroups
     {
-        public ObservableCollection<CostList> Unchecked = new ObservableCollection<CostList>();
-        public ObservableCollection<CostList> Checked = new ObservableCollection<CostList>();
-        public int SummaryPosition { get; set; }
         
+        public ObservableCollection<CostList> Checked = new ObservableCollection<CostList>();
+        public ObservableCollection<CostList> Unchecked = new ObservableCollection<CostList>();
+
 
 
     }

@@ -32,6 +32,12 @@ namespace CarCostNotepad.Language
         string LeftString { get; set; }
         string RightString { get; set; }
         string NoneString { get; set; }
+
         string[] Month {get;set;}
+        string SelectTypeString { get; set; }
+        string ShowCartesianChartSetting { get; set; }
+        string Summary { get; set; }
+        string TypeString { get; set; }
+        string YearSum { get; set; }
     }
 }

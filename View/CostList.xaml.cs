@@ -26,15 +26,16 @@ namespace CarCostNotepad
         private IMainObject MObject;
         private Card ParentPage;
         Settings Config;
+        Summary Sumar;
         int frameNumber;
         public int FrameNumber { get { return frameNumber; } set {
                 frameNumber = value;
                 var a = MObject.Costs.Checked.IndexOf(List);
                 MObject.Costs.Checked[a].ChoosedField = value;
             } }
-        public CostList(IMainObject mObject, Model.CostList list, Card parentPage, Settings config)
+        public CostList(IMainObject mObject, Model.CostList list, Card parentPage, Settings config,Summary sum)
         {
-           
+            Sumar = sum;
             Config = config;
             DataContext = Config.LanguageSet;
             MObject = mObject;
@@ -58,8 +59,7 @@ namespace CarCostNotepad
             List.Sum = 0;
             new SaveSystem().Save(MObject);
             MObject.RefreshSum();
-            var chart = (Charts)ParentPage.FieldViewList[0];
-            chart.UpdateChar(MObject.Costs.Checked);
+            Sumar.UpdateChar(MObject.Costs.Checked);
         }
 
         private void EditField(object sender, MouseButtonEventArgs e)
@@ -68,8 +68,8 @@ namespace CarCostNotepad
             box.IsReadOnly = false;
             box.Background = new SolidColorBrush(Colors.White);
             box.Foreground = new SolidColorBrush(Colors.Black);
-            var chart = (Charts)ParentPage.FieldViewList[0];
-            chart.UpdateChar(MObject.Costs.Checked);
+            var chart = (Summary)ParentPage.FieldViewList[0];
+            Sumar.UpdateChar(MObject.Costs.Checked);
         }
 
         private void Block(object sender, RoutedEventArgs e)
@@ -87,14 +87,14 @@ namespace CarCostNotepad
             List.Sum = 0;
             new SaveSystem().Save(MObject);
             MObject.RefreshSum();
-            var chart = (Charts)ParentPage.FieldViewList[0];
-            chart.UpdateChar(MObject.Costs.Checked);
+            
+            Sumar.UpdateChar(MObject.Costs.Checked);
         }
 
         private void ShowChart(object sender, RoutedEventArgs e)
         {
-            var popupChar = new PopUpChar(List,Config);
-            popupChar.ShowDialog();
+            //var popupChar = new Details(List,Config);
+            //popupChar.ShowDialog();
         }
     }
 }

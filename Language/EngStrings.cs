@@ -34,6 +34,12 @@ namespace CarCostNotepad.Eng
         public string ChartSettings { get ; set; }
         public string NoneString { get ; set; }
         public string[] Month { get ; set ; }
+        public string SelectTypeString { get ; set ; }
+        public string ShowCartesianChartSetting { get ; set ; }
+        public string Summary { get ; set ; }
+        public string TypeString { get ; set ; }
+        public string YearSum { get ; set ; }
+
 
         public EngStrings()
         {
@@ -56,6 +62,7 @@ namespace CarCostNotepad.Eng
             FixedCostString = "Fixed Costs";
             RepairsCostString = "Repair";
             ShowChartSetting = "Show Chart";
+            ShowCartesianChartSetting = "Show Cartesian Chart";
             CharLegendVisibility = "Chow Chart Legend";
             TopString = "Top";
             BottomString = "Bottom";
@@ -76,6 +83,10 @@ namespace CarCostNotepad.Eng
             Month[9] = "October";
             Month[10] = "November";
             Month[11] = "December";
+            SelectTypeString = "Select Type";
+            Summary = "Summary";
+            TypeString = "Type";
+            YearSum = "Sum of Year";
         }
     }
 }

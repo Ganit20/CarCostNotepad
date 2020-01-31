@@ -33,6 +33,11 @@ namespace CarCostNotepad.View.PopupWindows
             DataContext = Config.LanguageSet;
             MObject = mObject;
             InitializeComponent();
+            MObject.Costs.Unchecked = config.Unchecked;
+            foreach (var item in MObject.Costs.Checked)
+            {
+                MObject.Costs.Unchecked.Remove(item);
+            }
             UnChecked.ItemsSource = MObject.Costs.Unchecked;
             Checked.ItemsSource = MObject.Costs.Checked;
         }
@@ -59,7 +64,7 @@ namespace CarCostNotepad.View.PopupWindows
 
         private void UnChecked_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (((ListView)sender != null) && (MObject.Costs.Checked.Count < 6))
+            if (((ListView)sender != null) && (MObject.Costs.Checked.Count < 12))
             {
                 ToChecked.IsEnabled = true;
             }
@@ -101,7 +106,7 @@ namespace CarCostNotepad.View.PopupWindows
 
         private void unChecked_Double(object sender, MouseButtonEventArgs e)
         {
-            if ((UnChecked.SelectedItem != null) && (MObject.Costs.Checked.Count < 6))
+            if ((UnChecked.SelectedItem != null) && (MObject.Costs.Checked.Count < 12))
             {
                 var a = MObject.Costs.Unchecked.Where(e => e == UnChecked.SelectedItem);
             MObject.Costs.Checked.Add(a.First());
@@ -115,10 +120,11 @@ namespace CarCostNotepad.View.PopupWindows
             a.ShowDialog();
             if (a.DialogResult.Value)
             {
-                MObject.Costs.Unchecked.Add(new Model.CostList()
+                Config.Unchecked.Add(new Model.CostList()
                 {
                     Name=a.FieldName
                 });
+                new SaveSystem().SaveSettings(Config) ;
             }
         }
     }

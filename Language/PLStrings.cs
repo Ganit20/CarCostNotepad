@@ -33,6 +33,13 @@ namespace CarCostNotepad.Language
         public string ChartSettings { get ; set; }
         public string NoneString { get ; set; }
         public string[] Month { get; set; }
+        public string SelectTypeString { get; set; }
+        public string ShowCartesianChartSetting { get; set; }
+        public string Summary { get; set; }
+        public string TypeString { get; set; }
+        public string YearSum { get; set; }
+        
+
         public PLStrings()
         {
             LanguageName = "Polski";
@@ -53,7 +60,8 @@ namespace CarCostNotepad.Language
             OtherCostString = "Inne";
             FixedCostString = "Koszta Stałe";
             RepairsCostString = "Naprawa";
-            ShowChartSetting = "Pokaż Wykres";
+            ShowChartSetting = "Pokaż Wykres Kołowy";
+            ShowCartesianChartSetting = "Pokaż Wykres Kolumnowy";
             CharLegendVisibility = "Pokaż Legende Wykresu";
             TopString = "Na Górze";
             BottomString = "Na Dole";
@@ -74,6 +82,10 @@ namespace CarCostNotepad.Language
             Month[9] = "Październik";
             Month[10] = "Listopad";
             Month[11] = "Grudzień";
+            SelectTypeString = "Wybierz Rodzaj";
+            Summary = "Podsumowanie";
+            TypeString = "Typ";
+            YearSum = "Suma Roczna";
         }
     }
 }

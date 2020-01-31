@@ -30,6 +30,8 @@ namespace CarCostNotepad.View.SettingsWindows
             ShowChartCheckBox.DataContext = Config;
             if (config.ShowChart == Visibility.Visible)
                 ShowChartCheckBox.IsChecked = true;
+            if (config.ShowCartesianChart == Visibility.Visible)
+                ShowCartesianChartCheckBox.IsChecked = true;
         }
         private void Check(object sender, RoutedEventArgs e)
         {
@@ -39,6 +41,7 @@ namespace CarCostNotepad.View.SettingsWindows
         private void Uncheck(object sender, RoutedEventArgs e)
         {
             Config.ShowChart = Visibility.Hidden;
+
         }
         private void None_Checked(object sender, RoutedEventArgs e)
         {
@@ -62,6 +65,42 @@ namespace CarCostNotepad.View.SettingsWindows
         private void Top_Checked(object sender, RoutedEventArgs e)
         {
             Config.ChartLegendPosition = LegendLocation.Top;
+        }
+
+        private void CheckCartesian(object sender, RoutedEventArgs e)
+        {
+            Config.ShowCartesianChart = Visibility.Visible;
+            new SaveSystem().SaveSettings(Config);
+        }
+
+        private void UncheckCartesian(object sender, RoutedEventArgs e)
+        {
+            Config.ShowCartesianChart = Visibility.Hidden;
+        }
+
+        
+        private void CartesianNone_Checked(object sender, RoutedEventArgs e)
+        {
+            Config.CartesianChartLegendPosition = LegendLocation.None;
+        }
+        private void CartesianLeft_Checked(object sender, RoutedEventArgs e)
+        {
+            Config.CartesianChartLegendPosition = LegendLocation.Left;
+        }
+
+        private void CartesianRight_Checked(object sender, RoutedEventArgs e)
+        {
+            Config.CartesianChartLegendPosition = LegendLocation.Right;
+        }
+
+        private void CartesianBottom_Checked(object sender, RoutedEventArgs e)
+        {
+            Config.CartesianChartLegendPosition = LegendLocation.Bottom;
+        }
+
+        private void CartesianTop_Checked(object sender, RoutedEventArgs e)
+        {
+            Config.CartesianChartLegendPosition = LegendLocation.Top;
         }
     }
 }

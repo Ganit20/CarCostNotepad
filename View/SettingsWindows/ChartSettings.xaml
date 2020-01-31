@@ -27,9 +27,9 @@
 
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.5*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -39,6 +39,7 @@
                     <CheckBox x:Name="ShowChartCheckBox" Checked="Check" Unchecked="Uncheck" />
                     <TextBlock  Text="{Binding ShowChartSetting}"/>
                 </StackPanel>
+
             <StackPanel Margin="5" Grid.Row="1" Orientation="Vertical" >
                 <TextBlock  Text="{Binding CharLegendVisibility}"/>
                 <StackPanel Orientation="Horizontal">
@@ -48,10 +49,27 @@
                     <RadioButton x:Name="Right" Checked="Right_Checked" Foreground="White" GroupName="ChartLegend" Margin="2" Content="{Binding RightString}"/>
                     <RadioButton x:Name="None" Checked="None_Checked" Foreground="White" GroupName="ChartLegend" Margin="2" Content="{Binding NoneString}"/>
                 </StackPanel>
-                
-                
-                
             </StackPanel>
+
+
+
+            <StackPanel Margin="5" Grid.Row="2" Orientation="Horizontal" >
+                    <CheckBox x:Name="ShowCartesianChartCheckBox" Checked="CheckCartesian" Unchecked="UncheckCartesian" />
+                    <TextBlock  Text="{Binding ShowCartesianChartSetting}"/>
+                </StackPanel>
+
+                <StackPanel Margin="5" Grid.Row="3" Orientation="Vertical" >
+                    <TextBlock  Text="{Binding CharLegendVisibility}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton x:Name="CTop" Checked="CartesianTop_Checked" Foreground="White" GroupName="CartesianChartLegend" Margin="2" Content="{Binding TopString}"/>
+                        <RadioButton x:Name="CBottom" Checked="CartesianBottom_Checked" Foreground="White" GroupName="CartesianChartLegend" Margin="2" Content="{Binding BottomString}"/>
+                        <RadioButton x:Name="CLeft" Checked="CartesianLeft_Checked" Foreground="White" GroupName="CartesianChartLegend" Margin="2" Content="{Binding LeftString}"/>
+                        <RadioButton x:Name="CRight" Checked="CartesianRight_Checked" Foreground="White" GroupName="CartesianChartLegend" Margin="2" Content="{Binding RightString}"/>
+                        <RadioButton x:Name="CNone" Checked="CartesianNone_Checked" Foreground="White" GroupName="CartesianChartLegend" Margin="2" Content="{Binding NoneString}"/>
+                    </StackPanel>
+
+                </StackPanel>
+            
         </Grid>
 
         </Grid>
