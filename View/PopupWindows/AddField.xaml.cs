@@ -31,7 +31,7 @@ namespace CarCostNotepad.View.PopupWindows
         public AddField(Settings config)
         {
             InitializeComponent();
-            DataContext = config.LanguageSet;
+            DataContext = config;
         }
 
         private void Add(object sender, RoutedEventArgs e)

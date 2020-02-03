@@ -39,8 +39,14 @@ namespace CarCostNotepad.Eng
         public string Summary { get ; set ; }
         public string TypeString { get ; set ; }
         public string YearSum { get ; set ; }
-
-
+        public string FontSizeString { get ; set ; }
+        public string Details { get ; set ; }
+        public string CardSizeString { get ; set ; }
+        public string LoadDefault { get ; set ; }
+        public string DeleteQuestion { get ; set ; }
+        public string Yes { get ; set ; }
+        public string No { get ; set ; }
+   
         public EngStrings()
         {
             LanguageName = "English";
@@ -87,6 +93,13 @@ namespace CarCostNotepad.Eng
             Summary = "Summary";
             TypeString = "Type";
             YearSum = "Sum of Year";
+            FontSizeString = "Font Size";
+            Details = "Details";
+            CardSizeString = "Size of Card";
+            LoadDefault = "Load Default";
+            DeleteQuestion = "Are you sure you want to delete ";
+            Yes = "Yes";
+            No = "No";
         }
     }
 }

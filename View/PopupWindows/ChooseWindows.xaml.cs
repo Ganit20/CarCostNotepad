@@ -44,7 +44,7 @@ namespace CarCostNotepad.View.PopupWindows
 
         private void ToChecked_Click(object sender, RoutedEventArgs e)
         {
-            if (UnChecked.SelectedItem != null && MObject.Costs.Checked.Count<6)
+            if (UnChecked.SelectedItem != null && MObject.Costs.Checked.Count<Config.CardSize)
             {
                 var a = MObject.Costs.Unchecked.Where(e => e == UnChecked.SelectedItem);
                 MObject.Costs.Checked.Add(a.First());
@@ -64,7 +64,7 @@ namespace CarCostNotepad.View.PopupWindows
 
         private void UnChecked_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (((ListView)sender != null) && (MObject.Costs.Checked.Count < 12))
+            if (((ListView)sender != null) && (MObject.Costs.Checked.Count < Config.CardSize))
             {
                 ToChecked.IsEnabled = true;
             }
@@ -106,7 +106,7 @@ namespace CarCostNotepad.View.PopupWindows
 
         private void unChecked_Double(object sender, MouseButtonEventArgs e)
         {
-            if ((UnChecked.SelectedItem != null) && (MObject.Costs.Checked.Count < 12))
+            if ((UnChecked.SelectedItem != null) && (MObject.Costs.Checked.Count < Config.CardSize))
             {
                 var a = MObject.Costs.Unchecked.Where(e => e == UnChecked.SelectedItem);
             MObject.Costs.Checked.Add(a.First());

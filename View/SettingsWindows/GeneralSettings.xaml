@@ -11,8 +11,9 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -20,27 +21,34 @@
             <RowDefinition Height="10*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1" Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Grid.Column="2">
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
             <StackPanel Margin="5">
-                <TextBlock Text="{Binding Language}"/>
-                <ComboBox x:Name="Lng" DisplayMemberPath="LanguageName" SelectionChanged="LngChanged">
+                <TextBlock HorizontalAlignment="Center" Text="{Binding LanguageSet.Language}"/>
+                <ComboBox x:Name="Lng" DisplayMemberPath="LanguageName" MaxWidth="100" SelectionChanged="LngChanged">
                     
                 </ComboBox>
             </StackPanel>
-           
+            <StackPanel Grid.Row="1" Margin="5">
+                <TextBlock HorizontalAlignment="Center" Text="{Binding LanguageSet.CardSizeString}"/>
+                <ComboBox x:Name="CardSizeChoose" MaxWidth="100"  SelectionChanged="CSChanged">
 
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Margin="5" Grid.Row="2">
+                <TextBlock HorizontalAlignment="Center" Text="{Binding LanguageSet.FontSizeString}"/>
+                <Slider x:Name="FontSizeSlider" Minimum="7" Maximum="40" Value="{Binding FontSize, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <Button Content="{Binding LanguageSet.LoadDefault}" Click="LoadDefaultSettings" Grid.Row="7"/>
         </Grid>
         
     </Grid>

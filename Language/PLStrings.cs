@@ -21,24 +21,31 @@ namespace CarCostNotepad.Language
         public string GeneralSettingsString { get; set; }
         public string Language { get; set; }
         public string FuelCostString { get; set; }
-        public string OtherCostString { get ; set ; }
+        public string OtherCostString { get; set; }
         public string FixedCostString { get; set; }
         public string RepairsCostString { get; set; }
-        public string ShowChartSetting { get; set ; }
-        public string CharLegendVisibility { get; set ; }
-        public string TopString { get ; set ; }
-        public string BottomString { get ; set; }
-        public string LeftString { get; set ; }
-        public string RightString { get ; set; }
-        public string ChartSettings { get ; set; }
-        public string NoneString { get ; set; }
+        public string ShowChartSetting { get; set; }
+        public string CharLegendVisibility { get; set; }
+        public string TopString { get; set; }
+        public string BottomString { get; set; }
+        public string LeftString { get; set; }
+        public string RightString { get; set; }
+        public string ChartSettings { get; set; }
+        public string NoneString { get; set; }
         public string[] Month { get; set; }
         public string SelectTypeString { get; set; }
         public string ShowCartesianChartSetting { get; set; }
         public string Summary { get; set; }
         public string TypeString { get; set; }
         public string YearSum { get; set; }
-        
+        public string FontSizeString { get; set; }
+        public string Details { get; set; }
+        public string CardSizeString { get; set; }
+        public string LoadDefault { get; set; }
+        public string DeleteQuestion { get; set; }
+        public string Yes { get; set; }
+        public string No { get; set; }
+
 
         public PLStrings()
         {
@@ -86,6 +93,13 @@ namespace CarCostNotepad.Language
             Summary = "Podsumowanie";
             TypeString = "Typ";
             YearSum = "Suma Roczna";
+            FontSizeString = "Wielkość Czcionki";
+            Details = "Szczegóły";
+            CardSizeString = "Wielkość Karty";
+            LoadDefault = "Przywróć Domyślne";
+            DeleteQuestion = "Czy na pewno chcesz usunąć ";
+            Yes = "Tak";
+            No = "Nie";
         }
     }
 }

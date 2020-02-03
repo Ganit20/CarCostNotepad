@@ -46,7 +46,7 @@ namespace CarCostNotepad.View
             {
 
                 var b = new double[31];
-                b[item.Date.Day] = item.Price;
+                b[item.Date.Day-1] = item.Price;
                 Cartesian.Series.Add(new StackedColumnSeries() { Values = new ChartValues<double>(b), Title = item.Name, DataLabels = true, });
                 Cartesian.AxisX.Clear();
                 Cartesian.DataClick -= DataClicked;

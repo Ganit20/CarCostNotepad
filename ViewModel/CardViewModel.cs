@@ -11,26 +11,52 @@ namespace CarCostNotepad.ViewModel
 {
     class CardViewModel
     {
+        Grid mainGrid;
+        public async Task<Grid> CreateGrid(Grid main,Settings Config)
+        {
+            main.HorizontalAlignment = HorizontalAlignment.Stretch;
+            main.VerticalAlignment = VerticalAlignment.Stretch;
+            
+            int GridValue = Config.CardSize;
+            if (Config.CardSize == 0) Config.CardSize = 6;
+            while (GridValue%4!=0)
+            {
+                GridValue++;
+            }
+            for(int i = 1;i<=4; i++)
+            {
+                main.ColumnDefinitions.Add(new ColumnDefinition());
 
+                
+
+            }
+            for (int i2 = 1; i2 <= (GridValue / 3); i2++)
+            {
+                main.RowDefinitions.Add(new RowDefinition());
+
+            }
+            mainGrid = main;
+            return main;
+        }
         public async Task<List<Frame>> CreateFrames()
         {
-            int x = 1;
-            int y = 1;
+            int x = 0;
+            int y = 0;
             List<Frame> FrameList = new List<Frame>();
-            for (int i = 1; i <= 12; i++)
+            for (int i = 1; i < mainGrid.RowDefinitions.Count*mainGrid.ColumnDefinitions.Count-1; i++)
             {
                 Frame frame = new Frame();
                 frame.SetValue(Grid.RowProperty, y);
                 frame.SetValue(Grid.ColumnProperty, x);
                 frame.Margin = new Thickness(10);
-                if (i % 4 == 0)
+                if (i % 3 == 0)
                 {
-                    y = 1;
-                    x++;
+                    x = 0;
+                    y++;
                 }
                 else
                 {
-                    y++;
+                    x++;
                 }
                
                 FrameList.Add(frame);
@@ -42,7 +68,7 @@ namespace CarCostNotepad.ViewModel
         {
             List<IViewObject> FieldViewList = new List<IViewObject>();
             foreach(var Checked in mobject.Costs.Checked) {
-                FieldViewList.Add(new CostList(mobject, Checked,card,conf,card.SummaryField));
+                FieldViewList.Add(new CostList(mobject, Checked,card,conf));
             }
             return FieldViewList;
         }
@@ -51,7 +77,11 @@ namespace CarCostNotepad.ViewModel
            
            foreach(var obj in FieldViewList)
             {
-                if(obj.FrameNumber>0 && FieldList[obj.FrameNumber].Content==null)
+                if(obj.FrameNumber>FieldViewList.Count)
+                {
+                    obj.FrameNumber = 0;
+                }
+                if(obj.FrameNumber>0 && FieldList[obj.FrameNumber-1].Content==null )
                 {
                     FieldList[obj.FrameNumber - 1].Navigate(obj);
                 }

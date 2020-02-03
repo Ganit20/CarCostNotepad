@@ -30,12 +30,17 @@ namespace CarCostNotepad
         {
 
             InitializeComponent();
-            Settings config = new SaveSystem().LoadSettings();
-            Config = config;
-            new MainWindowViewModel().LoadObjects(this,Config);
+            Initialize();
+            
         }
 
-        
+        async Task Initialize()
+        {
+            Settings config = await new SaveSystem().LoadSettings();
+            Config = config;
+            DataContext = Config;
+            new MainWindowViewModel().LoadObjects(this, Config);
+        }
         private void MoveState(object sender, RoutedEventArgs e)
         {
             var card = (Card)MainFrame.Content;
@@ -67,6 +72,17 @@ namespace CarCostNotepad
             set.ShowDialog();
             new SaveSystem().SaveSettings(Config);
             new MainWindowViewModel().LoadObjects(this, Config);
+        }
+
+        private void Delete(object sender, RoutedEventArgs e)
+        {
+            var currentCard = (Button)this.Cards.Children[Config.LastOpen];
+            var question = new YesOrNo(Config.LanguageSet.DeleteQuestion +" "+currentCard.Content +"?",Config);
+            question.ShowDialog();
+            if(question.DialogResult.Value)
+            {
+                new SaveSystem().Delete(currentCard.Content.ToString());
+            }
         }
     }
 }

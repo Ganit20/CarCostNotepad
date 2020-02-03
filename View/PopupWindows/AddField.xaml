@@ -11,8 +11,8 @@
             <TextBlock>Name</TextBlock>
             <TextBox x:Name="Name"> </TextBox>
 
-            <Button Margin="2"  Click="Add" Content="{Binding AddString}"/>
-            <Button Margin="1" Click="Cancel" Content="{Binding CancelString}"/>
+            <Button Margin="2"  Click="Add" Content="{Binding LanguageSet.AddString}"/>
+            <Button Margin="1" Click="Cancel" Content="{Binding LanguageSet.CancelString}"/>
 
         </StackPanel>
         

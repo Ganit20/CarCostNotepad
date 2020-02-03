@@ -22,7 +22,7 @@ namespace CarCostNotepad.View.SettingsWindows
         public SettingsWindow(Settings config)
         {
             Config=config;
-            DataContext = Config.LanguageSet;
+            DataContext = Config;
             InitializeComponent();
             OptionsFrame.Navigate(new GeneralSettings(Config));
         }

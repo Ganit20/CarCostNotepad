@@ -26,11 +26,11 @@ namespace CarCostNotepad.View.SettingsWindows
         {
             InitializeComponent();
             Config = config;
-            Lng.Items.Clear();
             Lng.ItemsSource = Config.LanguageList;
-            DataContext = Config.LanguageSet;
-            
+            DataContext = Config;
+            CardSizeChoose.ItemsSource = Config.SizeList;
             Lng.SelectedIndex = Config.LanguageList.IndexOf(Config.LanguageList.Find(e=> e.LanguageName == Config.LanguageSet.LanguageName));
+            CardSizeChoose.SelectedIndex = Config.SizeList.IndexOf(Config.SizeList.Find(e=> e == Config.CardSize));
         }
 
         private void LngChanged(object sender, SelectionChangedEventArgs e)
@@ -42,6 +42,18 @@ namespace CarCostNotepad.View.SettingsWindows
             }
         }
 
-      
+        private void CSChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(CardSizeChoose.SelectedItem!=null)
+            {
+                Config.CardSize = (int)CardSizeChoose.SelectedItem;
+                new SaveSystem().SaveSettings(Config);
+            }
+        }
+
+        private void LoadDefaultSettings(object sender, RoutedEventArgs e)
+        {
+            Config.LoadDefault();
+        }
     }
 }

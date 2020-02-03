@@ -32,13 +32,15 @@ namespace CarCostNotepad.View
         public List<IViewObject> FieldViewList = new List<IViewObject>();
         Settings Config;
         public Summary SummaryField;
+        CardViewModel ViewModel;
 
         public Card(IMainObject car,Settings config)
         {
             
             Config = config;
-            DataContext = Config.LanguageSet;
+            DataContext = Config;
             MObject = car;
+            ViewModel=new CardViewModel();
             InitializeComponent();
             Initialize();
             
@@ -46,16 +48,17 @@ namespace CarCostNotepad.View
         }
         public async Task Initialize()
         {
+            var GridProperty = await ViewModel.CreateGrid(MainGrid,Config);
             var summaryField = new Summary(Config, MObject);
             SummaryField = summaryField;
             Summary.Navigate(summaryField);
-            FieldList = await new CardViewModel().CreateFrames();
+            FieldList = await ViewModel.CreateFrames();
             foreach (var frame in FieldList)
             {
                 frame.MouseDown += ShowDetails;
                 MainGrid.Children.Add(frame);
             }
-            FieldViewList = await new CardViewModel().CreateFieldView(MObject, this, Config);
+            FieldViewList = await ViewModel.CreateFieldView(MObject, this, Config);
             await new CardViewModel().SetFrames(FieldList, FieldViewList);
             MObject.RefreshSum();
             

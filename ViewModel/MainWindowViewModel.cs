@@ -4,6 +4,7 @@ using CarCostNotepad.View.PopupWindows;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -14,7 +15,7 @@ namespace CarCostNotepad.ViewModel
     {
         MainWindow main;
         Settings Config;
-       public void CreateButton(MainWindow mainWindow,Settings config, IMainObject obj)
+       public async Task CreateButton(MainWindow mainWindow,Settings config, IMainObject obj)
         {
             main = mainWindow;
             Config = config;
@@ -37,7 +38,7 @@ namespace CarCostNotepad.ViewModel
 
 
             }
-      public   void LoadObjects(MainWindow main,Settings config)
+      public async Task LoadObjects(MainWindow main,Settings config)
         {
             main.Cards.Children.Clear();
             main.Objects.Clear();
@@ -50,9 +51,16 @@ namespace CarCostNotepad.ViewModel
             }
             foreach (var car in a)
             {
-                new MainWindowViewModel().CreateButton(main, config, car);
+               await new MainWindowViewModel().CreateButton(main, config, car);
             }
-            main.Cards.Children[0].RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            if(config.LastOpen==null || config.LastOpen> main.Cards.Children.Count)
+            {
+                main.Cards.Children[0].RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
+            else if (main.Cards.Children.Count - 1 >= config.LastOpen)
+            {
+                main.Cards.Children[config.LastOpen].RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
         }
         private void GoToCard(object sender, RoutedEventArgs e)
         {
@@ -64,6 +72,8 @@ namespace CarCostNotepad.ViewModel
             button.Background = Brushes.Blue;
             var CardObject = main.CardList.Find(e => e.MObject.Name == button.Content);
             main.MainFrame.Navigate(new Card(CardObject.MObject, Config));
+            Config.LastOpen = main.Cards.Children.IndexOf(button);
+
         }
 
     }

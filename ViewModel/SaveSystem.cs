@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CarCostNotepad.ViewModel
 {
@@ -24,23 +25,23 @@ namespace CarCostNotepad.ViewModel
                 {
                     sw.Write(JsonConvert.SerializeObject(car));
                 }
-            
+
         }
         public List<IMainObject> Load()
         {
             List<IMainObject> mainObjects = new List<IMainObject>();
             var directory = new DirectoryInfo(@"Saves\");
             var saves = directory.GetFiles("*.CCNF");
-            foreach(var file in saves)
+            foreach (var file in saves)
             {
-                using(StreamReader read = new StreamReader(file.FullName))
+                using (StreamReader read = new StreamReader(file.FullName))
                 {
                     mainObjects.Add(JsonConvert.DeserializeObject<Car>(read.ReadToEnd()));
                 }
             }
             return mainObjects;
         }
-      public void SaveSettings(Settings set)
+        public void SaveSettings(Settings set)
         {
             using (var writer = new StreamWriter("Saves/Settings.conf"))
             {
@@ -48,7 +49,7 @@ namespace CarCostNotepad.ViewModel
                 writer.Write(a);
             };
         }
-        public Settings LoadSettings()
+        public async Task<Settings> LoadSettings()
         {
             Settings set = new Settings();
 
@@ -59,11 +60,20 @@ namespace CarCostNotepad.ViewModel
                     set = JsonConvert.DeserializeObject<Settings>(Reader.ReadToEnd(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
                 }
                 return set;
-            }else
+            }
+            else
             {
                 set.LoadDefault();
                 SaveSettings(set);
                 return set;
+            }
+        }
+
+        public void Delete(string name)
+        {
+            if (File.Exists("Saves/" + name + ".CCNF"))
+            {
+                File.Delete("Saves/" + name + ".CCNF");
             }
         }
     }

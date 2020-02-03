@@ -11,25 +11,27 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <lvc1:CartesianChart x:Name="Cartesian" Grid.Row="2" DataClick="DataClicked" LegendLocation="Top" >
+        <TextBlock Text="{Binding Details}" FontSize="30" HorizontalAlignment="Center"/>
+        <lvc1:CartesianChart x:Name="Cartesian" Grid.Row="3" DataClick="DataClicked" LegendLocation="Top" >
             <lvc1:CartesianChart.AxisX>
                 <lvc1:Axis Labels="{Binding Month}"></lvc1:Axis>
             </lvc1:CartesianChart.AxisX>
         </lvc1:CartesianChart>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Button x:Name="LeftYear" HorizontalAlignment="Left" Click="CLeftYear"  Content="&#xE72B;" FontSize="15" FontFamily="Segoe MDL2 Assets" />
             <TextBlock x:Name="ShowYear" HorizontalAlignment="Center" FontSize="30" Text="{Binding ChoosedYearDetails}" Foreground="White"/>
             <Button x:Name="RightYear" HorizontalAlignment="Right" Click="CRightYear"  Content="&#xE72A;" FontSize="15" FontFamily="Segoe MDL2 Assets"/>
         </Grid>
-        <StackPanel Orientation="Vertical"  x:FieldModifier="public" x:Name="Sums">
+        <StackPanel Orientation="Vertical" Grid.Row="1"  x:FieldModifier="public" x:Name="Sums">
             <StackPanel Orientation="Horizontal">
                 <TextBlock FontSize="15" Text="{Binding NameString}"/>
-                <TextBlock  FontSize="15" x:Name="Name" Text="{Binding Name,StringFormat={}: {0}}"/>
+                <TextBlock  FontSize="15" x:Name="Name" Text="{Binding Name ,StringFormat={}: {0}}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" >
-                <TextBlock FontSize="15" Text="{Binding SumString,StringFormat={}{0} }" />
+                <TextBlock FontSize="15" Text="{Binding SumString ,StringFormat={}{0} }" />
                 <TextBlock  FontSize="15" x:Name="SAll" Text="{Binding Sum}"/>
             </StackPanel>
             

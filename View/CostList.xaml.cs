@@ -33,9 +33,9 @@ namespace CarCostNotepad
                 var a = MObject.Costs.Checked.IndexOf(List);
                 MObject.Costs.Checked[a].ChoosedField = value;
             } }
-        public CostList(IMainObject mObject, Model.CostList list, Card parentPage, Settings config,Summary sum)
+        public CostList(IMainObject mObject, Model.CostList list, Card parentPage, Settings config)
         {
-            Sumar = sum;
+            Sumar = parentPage.SummaryField;
             Config = config;
             DataContext = Config.LanguageSet;
             MObject = mObject;
@@ -48,6 +48,7 @@ namespace CarCostNotepad
             CostListField.ItemsSource = list.List;
             Title.DataContext = list;
             Sum.DataContext = list;
+            SumName.DataContext = config;
         }
 
 
@@ -91,10 +92,5 @@ namespace CarCostNotepad
             Sumar.UpdateChar(MObject.Costs.Checked);
         }
 
-        private void ShowChart(object sender, RoutedEventArgs e)
-        {
-            //var popupChar = new Details(List,Config);
-            //popupChar.ShowDialog();
-        }
     }
 }

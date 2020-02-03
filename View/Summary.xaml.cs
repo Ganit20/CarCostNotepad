@@ -35,13 +35,9 @@ namespace CarCostNotepad.View
             Config = config;
             InitializeComponent();
             UpdateChar(mObject.Costs.Checked);
-            Chart.DataContext = config;
-            this.DataContext = config.LanguageSet;
+            this.DataContext = config;
             SAll.DataContext = mObject;
-            Cartesian.DataContext = config;
-            CartesianLabels.DataContext = config.LanguageSet;
             TypeB.DataContext = mObject;
-            ShowYear.DataContext = config;
             Name.DataContext = MObject;
             ChoosedYear.DataContext = MObject;
         }

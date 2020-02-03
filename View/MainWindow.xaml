@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarCostNotepad"
-        mc:Ignorable="d"
+        mc:Ignorable="d" 
         Background="#5555" Foreground="White"
         Title="MainWindow" WindowState="Maximized">
     
@@ -15,13 +15,14 @@
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
 
-        <ToolBar Background="#00555555"  ToolBarTray.IsLocked="True" >
+        <ToolBar Background="#00555555" FontSize="30"  ToolBarTray.IsLocked="True" >
             <Menu ToolBar.OverflowMode="Never">
 
             </Menu>
             <Button Margin="5"  FontFamily="Segoe MDL2 Assets" FontSize="15" Content="&#xE710;" Foreground="White" Background="#111111" BorderBrush="White" Click="AddC"/>
             <Button Margin="5"  FontFamily="Segoe MDL2 Assets" FontSize="15" Content="&#xE8A9;" Foreground="White" Background="#111111" BorderBrush="White" Click="MoveState"/>
             <Button Margin="5"  FontFamily="Segoe MDL2 Assets" FontSize="15" Content="&#xE8AB;" Foreground="White" Background="#111111" BorderBrush="White" Click="Choose"/>
+            <Button Margin="5"  FontFamily="Segoe MDL2 Assets" FontSize="15" Content="&#xE74D;" Foreground="White" Background="#111111" BorderBrush="White" Click="Delete"/>
             <Button Margin="5"  FontFamily="Segoe MDL2 Assets" FontSize="15" Content="&#xE713;" Foreground="White" Background="#111111" BorderBrush="White" Click="Settings"/>
         </ToolBar>
         <StackPanel Height="30" VerticalAlignment="Bottom" Grid.Row="1"  Orientation="Horizontal" x:Name="Cards" x:FieldModifier="public" >

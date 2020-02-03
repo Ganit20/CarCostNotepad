@@ -28,29 +28,26 @@
                 </Grid.RowDefinitions>
                 
                 <StackPanel HorizontalAlignment="Center">
-                    <TextBlock Foreground="White" FontSize="15"  Text="{Binding Summary}" />
+                    <TextBlock Foreground="White" FontSize="15"  Text="{Binding LanguageSet.Summary}" />
                     <Rectangle Fill="Gray" Height="1" HorizontalAlignment="Stretch"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <StackPanel  Margin="0,20,0,0"  Orientation="Vertical" x:FieldModifier="public" x:Name="Sums">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock FontSize="15" Text="{Binding NameString}"/>
+                            <TextBlock FontSize="15" Text="{Binding LanguageSet.NameString}"/>
                         <TextBlock  FontSize="15" x:Name="Name" Text="{Binding Name,StringFormat={}: {0}}"/>
                         
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-               <TextBlock FontSize="15" Text="{Binding SumString}"/>
+                            <TextBlock FontSize="15" Text="{Binding LanguageSet.SumString}"/>
                 <TextBlock  FontSize="15" x:Name="SAll" Text="{Binding Sum}"/>
                 </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock FontSize="15" Text="{Binding TypeString}"/>
-                        <TextBlock  FontSize="15" x:Name="TypeB" Text="{Binding Type,StringFormat={}: {0}}"/>
-                    </StackPanel>
+
                     </StackPanel>
 
                     <StackPanel Margin="80,20,0,0" Grid.Row="1" HorizontalAlignment="Center"  Orientation="Horizontal">
-                        <TextBlock FontSize="15" Text="{Binding YearSum}"/>
+                        <TextBlock FontSize="15" Text="{Binding LanguageSet.YearSum}"/>
                         <TextBlock FontSize="15" x:Name="ChoosedYear" Text="{Binding YearSum,StringFormat={}: {0}}"/>
                     </StackPanel>
                 </StackPanel>
@@ -64,22 +61,17 @@
                 
                 <lvc1:CartesianChart BorderBrush="Gray" DataClick="DataClicked" Visibility="{Binding ShowCartesianChart}" LegendLocation="{Binding CartesianChartLegendPosition}" BorderThickness="1" x:Name="Cartesian" Grid.Row="3"  >
                 <lvc1:CartesianChart.AxisX>
-                    <lvc1:Axis x:Name="CartesianLabels" x:FieldModifier="public" Labels="{Binding Month}"></lvc1:Axis>
+                    <lvc1:Axis x:Name="CartesianLabels" x:FieldModifier="public" Labels="{Binding LanguageSet.Month}"></lvc1:Axis>
                 </lvc1:CartesianChart.AxisX>
             </lvc1:CartesianChart>
             </Grid>
         </Border>
         <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1">
             <Grid >
-                <Grid.RowDefinitions>
 
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="4*"/>
-                    <RowDefinition Height="4*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Details" FontSize="30" HorizontalAlignment="Center"/>
+               
                 
-                   <Frame Grid.Row="1" Grid.RowSpan="2" x:Name="Details"/>
+                   <Frame  Grid.RowSpan="2" x:Name="Details"/>
             
             </Grid>
         </Border>

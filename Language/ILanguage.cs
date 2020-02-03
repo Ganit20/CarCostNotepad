@@ -39,5 +39,12 @@ namespace CarCostNotepad.Language
         string Summary { get; set; }
         string TypeString { get; set; }
         string YearSum { get; set; }
+        string FontSizeString { get; set; }
+        string Details { get; set; }
+        string CardSizeString { get; set; }
+        string LoadDefault { get; set; }
+        string DeleteQuestion { get; set; }
+        string Yes { get; set; }
+        string No { get; set; }
     }
 }

@@ -24,8 +24,8 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="General" Content="{Binding GeneralSettingsString}" Click="GeneralCategory"/>
-            <Button x:Name="Chart" Grid.Row="1" Content="{Binding ChartSettings}" Click="ChartCategory"/>
+            <Button x:Name="General" Content="{Binding LanguageSet.GeneralSettingsString}" Click="GeneralCategory"/>
+            <Button x:Name="Chart" Grid.Row="1" Content="{Binding LanguageSet.ChartSettings}" Click="ChartCategory"/>
         </Grid>
                
 
