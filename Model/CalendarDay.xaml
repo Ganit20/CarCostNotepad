@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="CarCostNotepad.Model.CalendarDay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CarCostNotepad.Model"
+             mc:Ignorable="d"  BorderThickness="2" MouseDoubleClick="Edit" LostFocus="BackAfterEdit" ToolTip="{Binding Notes}"
+              Foreground="{x:Null}">
+
+
+        <Grid >
+
+
+        <ScrollViewer  VerticalScrollBarVisibility="Auto" >
+            
+            <StackPanel Orientation="Vertical" MouseEnter="MouseOn" MouseLeave="MouseOff"  >
+                    <TextBlock x:Name="DayN" Text="{Binding DayNumber}" FontSize="30" />
+                    <TextBlock Text="{Binding WeekDay}" />
+                    <TextBox x:Name="Note" Text="{Binding Notes}" Foreground="{Binding ElementName=DayN, Path=Foreground}"  IsReadOnly="True" Background="#00808080" TextWrapping="WrapWithOverflow" AcceptsReturn="True" BorderBrush="{x:Null}" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+</UserControl>

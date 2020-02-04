@@ -46,5 +46,8 @@ namespace CarCostNotepad.Language
         string DeleteQuestion { get; set; }
         string Yes { get; set; }
         string No { get; set; }
+        string CalendarString { get; set; }
+        string Costs { get; set; }
+        public string[] WeekDays { get; set; }
     }
 }

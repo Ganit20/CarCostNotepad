@@ -37,7 +37,7 @@ namespace CarCostNotepad.View
             UpdateChar(mObject.Costs.Checked);
             this.DataContext = config;
             SAll.DataContext = mObject;
-            TypeB.DataContext = mObject;
+            //TypeB.DataContext = mObject;
             Name.DataContext = MObject;
             ChoosedYear.DataContext = MObject;
         }

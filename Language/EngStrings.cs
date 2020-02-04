@@ -34,6 +34,7 @@ namespace CarCostNotepad.Eng
         public string ChartSettings { get ; set; }
         public string NoneString { get ; set; }
         public string[] Month { get ; set ; }
+        public string[] WeekDays { get ; set ; }
         public string SelectTypeString { get ; set ; }
         public string ShowCartesianChartSetting { get ; set ; }
         public string Summary { get ; set ; }
@@ -46,6 +47,9 @@ namespace CarCostNotepad.Eng
         public string DeleteQuestion { get ; set ; }
         public string Yes { get ; set ; }
         public string No { get ; set ; }
+        public string CalendarString { get ; set ; }
+        public string Costs { get ; set ; }
+        public string CalendarDefaultNews { get ; set ; }
    
         public EngStrings()
         {
@@ -99,7 +103,18 @@ namespace CarCostNotepad.Eng
             LoadDefault = "Load Default";
             DeleteQuestion = "Are you sure you want to delete ";
             Yes = "Yes";
-            No = "No";
+            CalendarString = "Calendar";
+            CalendarDefaultNews = "No Plans For Today";
+            Costs = "Cost Calculator";
+            WeekDays = new string[7];
+            WeekDays[0] = "Sunday ";
+            WeekDays[1] = "Monday";
+            WeekDays[2] = "Tuesday";
+            WeekDays[3] = "Wednesday";
+            WeekDays[4] = "Thursday";
+            WeekDays[5] = "Friday";
+            WeekDays[6] = "Saturday";
+
         }
     }
 }

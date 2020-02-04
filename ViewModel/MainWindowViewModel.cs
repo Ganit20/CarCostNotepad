@@ -53,14 +53,15 @@ namespace CarCostNotepad.ViewModel
             {
                await new MainWindowViewModel().CreateButton(main, config, car);
             }
-            if(config.LastOpen==null || config.LastOpen> main.Cards.Children.Count)
-            {
-                main.Cards.Children[0].RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-            }
-            else if (main.Cards.Children.Count - 1 >= config.LastOpen)
-            {
-                main.Cards.Children[config.LastOpen].RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-            }
+            //if(config.LastOpen==null || config.LastOpen> main.Cards.Children.Count)
+            //{
+            //    main.Cards.Children[0].RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            //}
+            //else if (main.Cards.Children.Count - 1 >= config.LastOpen)
+            //{
+            //    main.Cards.Children[config.LastOpen].RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            //}
+            main.MainFrame.Navigate(new HomeScreen(config,main));
         }
         private void GoToCard(object sender, RoutedEventArgs e)
         {
