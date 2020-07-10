@@ -52,7 +52,7 @@ namespace CarCostNotepad.ViewModel
         void GetBeforeDays()
         { var date = new DateTime(choosedDate.Year, choosedDate.Month, 1);
             var BeforeDays = DateTime.DaysInMonth(choosedDate.Month == 1 ? choosedDate.Year - 1 : choosedDate.Year, choosedDate.Month == 1 ? 12 : choosedDate.Month - 1);
-            if ((int)date.DayOfWeek != 0)
+            if ((int)date.DayOfWeek != 1)
             {
                 for (int f = BeforeDays - ((int)date.DayOfWeek - 1); f <= BeforeDays; f++)
                 {
@@ -73,12 +73,12 @@ namespace CarCostNotepad.ViewModel
         {
             var AfterDays = DateTime.DaysInMonth(choosedDate.Month == 12 ? choosedDate.Year + 1 : choosedDate.Year, choosedDate.Month == 12 ? 1 : choosedDate.Month + 1);
             var date = new DateTime(choosedDate.Year, choosedDate.Month, 1);
-            if ((int)date.DayOfWeek != 0)
+            if ((int)date.DayOfWeek !=1)
             {
-                for (int f = (((int)date.DayOfWeek -1)); f <= 6; f++)
+                for (int f = ((int)date.DayOfWeek==0?7: (int)date.DayOfWeek); f <= 6; f++)
                 {
                     int i = 1;
-                    var datebefore = new DateTime(choosedDate.Month == 1 ? choosedDate.Year - 1 : choosedDate.Year, choosedDate.Month == 1 ? 12 : choosedDate.Month - 1, f);
+                    var datebefore = new DateTime(choosedDate.Month == 12 ? choosedDate.Year + 1 : choosedDate.Year, choosedDate.Month ==12 ? 1 : choosedDate.Month + 1, i);
                     var DayBefore = new CalendarDays()
                     {
                         DayNumber = i,
@@ -104,7 +104,7 @@ namespace CarCostNotepad.ViewModel
                     WeekDay = Config.LanguageSet.WeekDays[day.DayOfTheWeek],
                     DayNumber = day.DayNumber,
                     Color = new SolidColorBrush(Colors.White),
-                    Notes = "gsagasgdfrswtwegberjhuiytugeriosgdyfavgeuibvgnerd",
+                    Notes = "",
                     Foreground = day.IsBeforeOrAfter == true ? new SolidColorBrush(Colors.DimGray) : new SolidColorBrush(Colors.White),
                     Background = day.IsToday == true ? new SolidColorBrush(Colors.Blue) : new SolidColorBrush(Colors.Transparent)
                 };
@@ -116,6 +116,12 @@ namespace CarCostNotepad.ViewModel
                 Grid.SetRow(dayObject, RowNum);
                 calendarView.MainGrid.Children.Add(dayObject);
             }
+        }
+
+        public DateTime EditDateTime(DateTime date,int setYear,int setMonth)
+        {
+            var editeddate = new DateTime(setYear, setMonth, date.Day);
+            return editeddate;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -35,6 +36,18 @@ namespace CarCostNotepad.View
         private void Calendar(object sender, RoutedEventArgs e)
         {
             main.MainFrame.Navigate(new Calendar(Config));
+        }
+
+        private void CostNotepad(object sender, RoutedEventArgs e)
+        {
+           if(main.Cards.Children.Count>0)
+            {
+                (main.Cards.Children[0] as Button).RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            }
+           else
+            {
+                main.AddC(null,null);
+            }
         }
     }
 }

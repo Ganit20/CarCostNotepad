@@ -61,7 +61,7 @@ namespace CarCostNotepad.ViewModel
             //{
             //    main.Cards.Children[config.LastOpen].RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             //}
-            main.MainFrame.Navigate(new HomeScreen(config,main));
+            
         }
         private void GoToCard(object sender, RoutedEventArgs e)
         {

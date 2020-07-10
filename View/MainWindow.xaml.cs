@@ -31,7 +31,7 @@ namespace CarCostNotepad
 
             InitializeComponent();
             Initialize();
-            
+           
         }
 
         async Task Initialize()
@@ -40,6 +40,7 @@ namespace CarCostNotepad
             Config = config;
             DataContext = Config;
             new MainWindowViewModel().LoadObjects(this, Config);
+            MainFrame.Navigate(new HomeScreen(config, this));
         }
         private void MoveState(object sender, RoutedEventArgs e)
         {
@@ -59,7 +60,7 @@ namespace CarCostNotepad
             new SaveSystem().Save(choose.Result);
         }
 
-        private void AddC(object sender, RoutedEventArgs e)
+        public void AddC(object sender, RoutedEventArgs e)
         {
             var create = new MainObjectCreator(Config,this);
             create.ShowDialog();
@@ -82,7 +83,13 @@ namespace CarCostNotepad
             if(question.DialogResult.Value)
             {
                 new SaveSystem().Delete(currentCard.Content.ToString());
+                new MainWindowViewModel().LoadObjects(this, Config);
             }
+        }
+
+        private void Home(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new HomeScreen(Config, this));
         }
     }
 }

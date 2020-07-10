@@ -43,10 +43,7 @@
 
                 </ComboBox>
             </StackPanel>
-            <StackPanel Margin="5" Grid.Row="2">
-                <TextBlock HorizontalAlignment="Center" Text="{Binding LanguageSet.FontSizeString}"/>
-                <Slider x:Name="FontSizeSlider" Minimum="7" Maximum="40" Value="{Binding FontSize, Mode=TwoWay}"/>
-            </StackPanel>
+
 
             <Button Content="{Binding LanguageSet.LoadDefault}" Click="LoadDefaultSettings" Grid.Row="7"/>
         </Grid>

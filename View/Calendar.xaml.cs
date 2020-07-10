@@ -28,24 +28,26 @@ namespace CarCostNotepad.View
 
         private void MoreYear(object sender, RoutedEventArgs e)
         {
-            ViewModel.choosedDate.AddYears(1);
+            ViewModel.choosedDate =ViewModel.EditDateTime(ViewModel.choosedDate, ViewModel.choosedDate.Year + 1, ViewModel.choosedDate.Month);
             ViewModel.GenerateCalendar();
         }
 
         private void LessYear(object sender, RoutedEventArgs e)
         {
-            
+            ViewModel.choosedDate = ViewModel.EditDateTime(ViewModel.choosedDate, ViewModel.choosedDate.Year-1, ViewModel.choosedDate.Month);
+            ViewModel.GenerateCalendar();
         }
 
         private void MoreMonth(object sender, RoutedEventArgs e)
         {
-            ViewModel.choosedDate.AddMonths(1);
+            ViewModel.choosedDate=ViewModel.EditDateTime(ViewModel.choosedDate, ViewModel.choosedDate.Year, ViewModel.choosedDate.Month + 1);
             ViewModel.GenerateCalendar();
         }
 
         private void LessMonth(object sender, RoutedEventArgs e)
         {
-
+            ViewModel.choosedDate = ViewModel.EditDateTime(ViewModel.choosedDate, ViewModel.choosedDate.Year, ViewModel.choosedDate.Month - 1);
+            ViewModel.GenerateCalendar();
         }
     }
 }
