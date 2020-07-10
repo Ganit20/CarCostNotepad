@@ -13,6 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CarCostLibrary\CarCostLibrary.csproj">
+      <Private>true</Private>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="RoundChar">
       <HintPath>..\RoundChar\bin\Debug\netcoreapp3.0\RoundChar.dll</HintPath>
     </Reference>

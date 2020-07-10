@@ -14,6 +14,6 @@ namespace CarCostNotepad.Model
         public void RefreshYearSum(int ChoosedYear);
         public void RefreshSum();
         public string Name { get; set; }
-        public string Type { get; set; }
+        public CalculationTypes.Type Type { get; set; }
     }
 }

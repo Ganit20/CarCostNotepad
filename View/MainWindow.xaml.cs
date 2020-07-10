@@ -77,13 +77,16 @@ namespace CarCostNotepad
 
         private void Delete(object sender, RoutedEventArgs e)
         {
-            var currentCard = (Button)this.Cards.Children[Config.LastOpen];
-            var question = new YesOrNo(Config.LanguageSet.DeleteQuestion +" "+currentCard.Content +"?",Config);
-            question.ShowDialog();
-            if(question.DialogResult.Value)
+            if (Cards.Children.Count > 0)
             {
-                new SaveSystem().Delete(currentCard.Content.ToString());
-                new MainWindowViewModel().LoadObjects(this, Config);
+                var currentCard = (Button)this.Cards.Children[Config.LastOpen];
+                var question = new YesOrNo(Config.LanguageSet.DeleteQuestion + " " + currentCard.Content + "?", Config);
+                question.ShowDialog();
+                if (question.DialogResult.Value)
+                {
+                    new SaveSystem().Delete(currentCard.Content.ToString());
+                    new MainWindowViewModel().LoadObjects(this, Config);
+                }
             }
         }
 

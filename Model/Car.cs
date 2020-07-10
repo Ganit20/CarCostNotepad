@@ -10,7 +10,7 @@ namespace CarCostNotepad.ViewModel
     {
        public Car()
         {
-            Type = "Car";
+            Type = CalculationTypes.Type.Car;
         }
         public CostGroups Costs{get;set;}
 
@@ -70,7 +70,7 @@ namespace CarCostNotepad.ViewModel
         public string Name { get; set; }
         public DateTime BuyDate = new DateTime();
         public string LicenceNumber { get; set; }
-        public string Type { get; set; }
+        public CalculationTypes.Type Type { get; set; }
         public double yearSum { get ; set; }
         public double YearSum {
             get

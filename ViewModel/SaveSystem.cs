@@ -1,4 +1,5 @@
-﻿using CarCostNotepad.Model;
+﻿using CarCostLibrary;
+using CarCostNotepad.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,7 @@ namespace CarCostNotepad.ViewModel
         {
 
             if (car.GetType() == typeof(Car))
-                using (StreamWriter sw = new StreamWriter("Saves/" + car.Name + ".CCNF"))
-                {
-                    sw.Write(JsonConvert.SerializeObject(car));
-                }
+                SaveSystemLogic.SaveCar(JsonConvert.SerializeObject(car),car.Name);
 
         }
         public List<IMainObject> Load()
@@ -33,32 +31,23 @@ namespace CarCostNotepad.ViewModel
             var directory = new DirectoryInfo(@"Saves\");
             var saves = directory.GetFiles("*.CCNF");
             foreach (var file in saves)
-            {
-                using (StreamReader read = new StreamReader(file.FullName))
-                {
-                    mainObjects.Add(JsonConvert.DeserializeObject<Car>(read.ReadToEnd()));
-                }
+            {   
+                    mainObjects.Add(JsonConvert.DeserializeObject<Car>(SaveSystemLogic.Load(file.FullName)));
             }
             return mainObjects;
         }
         public void SaveSettings(Settings set)
-        {
-            using (var writer = new StreamWriter("Saves/Settings.conf"))
-            {
+        { 
                 var a = JsonConvert.SerializeObject(set, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
-                writer.Write(a);
-            };
+                SaveSystemLogic.SaveSettings(a);
         }
         public async Task<Settings> LoadSettings()
         {
             Settings set = new Settings();
 
             if (File.Exists("Saves/Settings.conf"))
-            {
-                using (var Reader = new StreamReader("Saves/Settings.conf"))
-                {
-                    set = JsonConvert.DeserializeObject<Settings>(Reader.ReadToEnd(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
-                }
+            {      
+              set = JsonConvert.DeserializeObject<Settings>(SaveSystemLogic.Load("Saves/Settings.conf"), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
                 return set;
             }
             else
@@ -71,10 +60,7 @@ namespace CarCostNotepad.ViewModel
 
         public void Delete(string name)
         {
-            if (File.Exists("Saves/" + name + ".CCNF"))
-            {
-                File.Delete("Saves/" + name + ".CCNF");
-            }
+            SaveSystemLogic.Delete(name);
         }
     }
 }
