@@ -1,4 +1,4 @@
-Prosty lecz potężny kallkulator kosztów w dwóch językach polskim oraz angielskim.
+Prosty lecz potężny kallkulator kosztów zrealizowany w WPF w dwóch językach polskim oraz angielskim.
 <BR>Wykresy oparte o biblioteke Live-Charts.
 <BR>Dodatkowo kalendarz z możliwością dodawania notatek który jest w 100% autorski
 <BR><BR>Lista do dodania:
