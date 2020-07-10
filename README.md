@@ -5,6 +5,7 @@ Prosty lecz potężny kallkulator kosztów zrealizowany w WPF w dwóch językach
 <BR>-Rodzaj kalkulacji: Dom
 <BR>-Naprawa błędów związanych z przenoszeniem tabel
 <BR>-Możliwość zmiany motywu kolorystycznego
+<BR>-Naprawa Systemu zapisu notatek w kalendarzu
 
 ![alt text](https://i.imgur.com/Ui6hAUW.png)
 ![alt text](https://i.imgur.com/Y3C1hPl.png)
