@@ -2,6 +2,7 @@
 using CarCostNotepad.View;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -94,21 +95,19 @@ namespace CarCostNotepad.ViewModel
                             frame.Navigate(obj);
                         }
                     }
-                }
-            }
-           foreach(var obj in FieldViewList)
-            {
-                if(obj.FrameNumber==0)
+                } else
                 {
+                    var frameNumberList=FieldViewList.Where(x=>x.FrameNumber!=0).Select(x => x.FrameNumber);
                     foreach(var field in FieldList)
                     {
-                        if(field.Content==null)
-                        {
+                        if(!frameNumberList.Any(x=>x==FieldList.IndexOf(field)) && field.Content==null) {
                             field.Navigate(obj);
-                        } 
+                            break;
+                        }
                     }
                 }
             }
+           
            
             
         }
